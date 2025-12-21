@@ -3,70 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>María Fernanda Cachopo - Portafolio</title>
+    <title>Mafer Cachopo | Portafolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root { --primary: #2563eb; --dark: #1e293b; --light: #f8fafc; }
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; margin: 0; background: var(--light); color: var(--dark); }
-        header { background: var(--dark); color: white; padding: 4rem 2rem; text-align: center; }
-        .container { max-width: 900px; margin: auto; padding: 2rem; }
-        .section { margin-bottom: 3rem; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h1, h2 { color: var(--primary); }
-        .skills { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tag { background: #e2e8f0; padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; }
-        .exp-item { border-left: 3px solid var(--primary); padding-left: 1rem; margin-bottom: 1.5rem; }
-        .contact-btn { display: inline-block; background: var(--primary); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+        :root {
+            --bg-pastel: #fdfcf0; /* Crema muy suave */
+            --primary-pastel: #a2d2ff; /* Azul pastel */
+            --secondary-pastel: #bde0fe; /* Celeste claro */
+            --accent-pastel: #ffafcc; /* Rosa/Coral pastel */
+            --text-dark: #4a4e69; /* Gris azulado oscuro */
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-pastel); color: var(--text-dark); line-height: 1.6; }
+
+        /* Navegación */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 10%; background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-weight: bold; font-size: 1.5rem; color: var(--text-dark); }
+        .logo span { color: var(--primary-pastel); }
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-pastel); }
+
+        /* Hero Section */
+        .hero { display: flex; align-items: center; justify-content: space-between; padding: 5rem 10%; min-height: 80vh; gap: 2rem; }
+        .hero-content { flex: 1; }
+        .hero-content h2 { font-size: 1.2rem; color: var(--accent-pastel); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px; }
+        .hero-content h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--text-dark); }
+        .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; color: #6b705c; }
+
+        .hero-image { flex: 1; display: flex; justify-content: center; position: relative; }
+        .hero-image img { width: 400px; height: 400px; border-radius: 50%; object-fit: cover; border: 15px solid var(--white); box-shadow: 0 20px 40px rgba(0,0,0,0.1); background: var(--secondary-pastel); }
+
+        /* Botones */
+        .btn-container { display: flex; gap: 1rem; }
+        .btn { padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.4s; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-primary { background-color: var(--primary-pastel); color: var(--text-dark); }
+        .btn-primary:hover { background-color: var(--secondary-pastel); transform: translateY(-3px); }
+        .btn-download { background-color: var(--accent-pastel); color: white; }
+        .btn-download:hover { opacity: 0.9; transform: translateY(-3px); }
+
+        /* Stats */
+        .stats { display: flex; gap: 4rem; margin-top: 3rem; }
+        .stat-item h3 { font-size: 2.5rem; color: var(--text-dark); }
+        .stat-item span { color: var(--primary-pastel); }
+        .stat-item p { font-size: 0.9rem; text-transform: uppercase; color: #8d99ae; }
+
+        @media (max-width: 968px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding: 2rem 5%; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .btn-container { justify-content: center; }
+            .stats { justify-content: center; gap: 2rem; }
+            .hero-image img { width: 300px; height: 300px; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>María Fernanda Cachopo Rojas</h1>
-    <p>Ingeniera en Informática | Desarrolladora Web</p>
-    <p>📍 Colombiana / Venezolana</p>
-</header>
+    <nav>
+        <div class="logo"> &lt;/&gt; Mafer<span>Cachopo</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#sobre-mi">Perfil</a></li>
+            <li><a href="https://github.com/maferCachopo">GitHub</a></li>
+        </ul>
+    </nav>
 
-<div class="container">
-    <section class="section">
-        <h2>Sobre mí</h2>
-        <p>Ingeniera en Informática enfocada en el desarrollo de soluciones técnicas eficientes, con experiencia en frameworks modernos y gestión de proyectos digitales.</p>
-    </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Ingeniera en Informática</h2>
+            <h1>Encantada de conocerte, soy María Fernanda</h1>
+            <p>
+                Especialista en desarrollo web con experiencia en <b>Laravel, Vue.js y WordPress</b>. 
+                Enfocada en crear soluciones digitales optimizadas y funcionales[cite: 13, 17].
+            </p>
+            
+            <div class="btn-container">
+                <a href="https://github.com/maferCachopo" class="btn btn-primary">Ver Proyectos</a>
+                <a href="CV_Maria_Fernanda.pdf" download="CV_Mafer_Cachopo.pdf" class="btn btn-download">
+                    <i class="fas fa-download"></i> Descargar CV
+                </a>
+            </div>
 
-    <section class="section">
-        <h2>Experiencia Destacada</h2>
-        
-        <div class="exp-item">
-            <strong>Web Developer / WordPress Implementer - Yeka Coach</strong> (2023 - Presente)
-            <p>Lideré la migración y construcción del sitio web usando WordPress, Elementor y Astra. Implementé analítica avanzada con Meta Pixels y optimización SEO.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>2<span>+</span></h3>
+                    <p>Años de Experiencia [cite: 3, 6]</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10<span>+</span></h3>
+                    <p>Proyectos Web [cite: 15, 59]</p>
+                </div>
+            </div>
         </div>
 
-        <div class="exp-item">
-            <strong>Junior Web Developer (Pasante) - Villar Technologies</strong> (2023)
-            <p>Desarrollo de soluciones con Laravel (Backend) y Vue.js (Frontend). Manejo de bases de datos SQL y diseño de interfaces responsivas.</p>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/400x400/bde0fe/4a4e69?text=Mafer" alt="María Fernanda Cachopo">
         </div>
     </section>
-
-    <section class="section">
-        <h2>Tecnologías & Skills</h2>
-        <div class="skills">
-            <span class="tag">Laravel</span> <span class="tag">Vue.js</span> <span class="tag">PHP</span> 
-            <span class="tag">WordPress</span> <span class="tag">SQL</span> <span class="tag">HTML5/CSS3</span> 
-            <span class="tag">Git/GitHub</span> <span class="tag">JavaScript</span> <span class="tag">Java</span>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2>Educación</h2>
-        <p><strong>Ingeniería en Informática</strong> - Universidad Nacional Experimental del Táchira.</p>
-        <p><strong>Idiomas:</strong> Español (Nativo), Inglés (Nivel B2).</p>
-    </section>
-
-    <section class="section" style="text-align: center;">
-        <h2>¿Hablamos?</h2>
-        <p>Email: mafecaro2000@gmail.com</p>
-        <a href="mailto:mafecaro2000@gmail.com" class="contact-btn">Enviar Correo</a>
-        <a href="https://github.com/maferCachopo" class="contact-btn" style="background:#333">Ver GitHub</a>
-    </section>
-</div>
 
 </body>
 </html>
