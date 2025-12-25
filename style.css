@@ -1,0 +1,28 @@
+:root {
+  --navy: #0a192f;
+  --light-slate: #a8b2d1;
+  --teal: #64ffda;
+  --white: #e6f1ff;
+}
+
+body {
+  background-color: var(--navy);
+  color: var(--light-slate);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Efecto de resplandor que sigue al mouse (Opcional con JS) */
+.glow {
+  background: radial-gradient(600px at var(--x) var(--y), rgba(29, 78, 216, 0.15), transparent 80%);
+}
+
+/* Estilo para las etiquetas de tecnologías */
+.tech-tag {
+  display: flex;
+  align-items: center;
+  border-radius: 9999px;
+  background-color: rgba(100, 255, 218, 0.1);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--teal);
+}

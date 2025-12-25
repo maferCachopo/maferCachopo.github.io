@@ -3,267 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mafer Cachopo | Portafolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #f8fafc;
-            --primary: #6366f1; /* Indigo Moderno */
-            --primary-dark: #4f46e5;
-            --accent: #ec4899; /* Rosa vibrante */
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.8);
-        }
-
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-main); 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .logo { font-family: 'Poppins', sans-serif; }
-
-        /* --- Navegación --- */
-        nav { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 1.2rem 10%; 
-            background: var(--glass); 
-            backdrop-filter: blur(12px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .logo { 
-            font-weight: 700; 
-            font-size: 1.4rem; 
-            color: var(--text-main);
-            letter-spacing: -1px;
-        }
-
-        .logo span { color: var(--primary); }
-
-        .nav-links { list-style: none; display: flex; gap: 2.5rem; }
-        .nav-links a { 
-            text-decoration: none; 
-            color: var(--text-main); 
-            font-weight: 500; 
-            font-size: 0.95rem;
-            transition: 0.3s; 
-        }
-        .nav-links a:hover { color: var(--primary); }
-
-        /* --- Hero Section --- */
-        .hero { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 10rem 10% 5rem 10%; 
-            min-height: 100vh; 
-            gap: 4rem; 
-        }
-
-        .hero-content { flex: 1.2; }
-
-        /* Badge de profesión */
-        .profession-badge {
-            display: inline-block;
-            background: #e0e7ff;
-            color: var(--primary-dark);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero-content h1 { 
-            font-size: 4rem; 
-            line-height: 1.1; 
-            margin-bottom: 1.5rem; 
-            color: var(--text-main);
-            font-weight: 700;
-        }
-
-        /* Texto degradado */
-        .gradient-text {
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-content p { 
-            font-size: 1.2rem; 
-            margin-bottom: 2.5rem; 
-            max-width: 550px; 
-            color: var(--text-muted); 
-        }
-
-        /* Imagen con animación */
-        .hero-image { 
-            flex: 0.8; 
-            display: flex; 
-            justify-content: center; 
-            position: relative; 
-        }
-
-        .image-wrapper {
-            position: relative;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .hero-image img { 
-            width: 380px; 
-            height: 380px; 
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Forma orgánica */
-            object-fit: cover; 
-            border: 8px solid var(--white); 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12); 
-            background: var(--primary); 
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* --- Botones Modernos --- */
-        .btn-container { display: flex; gap: 1.2rem; }
-        
-        .btn { 
-            padding: 1rem 2.2rem; 
-            border-radius: 12px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border: none; 
-            cursor: pointer; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 12px;
-            font-size: 1rem;
-        }
-
-        .btn-primary { 
-            background-color: var(--primary); 
-            color: white; 
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
-        }
-
-        .btn-primary:hover { 
-            background-color: var(--primary-dark); 
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-download { 
-            background-color: var(--white); 
-            color: var(--text-main); 
-            border: 1px solid #e2e8f0;
-        }
-
-        .btn-download:hover { 
-            background-color: #f1f5f9;
-            transform: translateY(-5px);
-        }
-
-        /* --- Stats --- */
-        .stats { 
-            display: flex; 
-            gap: 4rem; 
-            margin-top: 4rem; 
-            padding-top: 2rem;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        .stat-item h3 { font-size: 2.2rem; color: var(--text-main); }
-        .stat-item span { color: var(--primary); }
-        .stat-item p { 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 968px) {
-            nav { padding: 1rem 5%; }
-            .nav-links { display: none; } /* Podrías añadir un menú hamburguesa luego */
-            .hero { flex-direction: column-reverse; text-align: center; padding: 8rem 5% 3rem 5%; }
-            .hero-content h1 { font-size: 2.8rem; }
-            .hero-content p { margin: 0 auto 2.5rem auto; }
-            .btn-container { justify-content: center; flex-direction: column; }
-            .stats { justify-content: center; gap: 2rem; }
-            .hero-image img { width: 280px; height: 280px; }
-        }
-    </style>
+    <title>Maria Fernanda Cachopo | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-    <nav>
-        <div class="logo"> &lt;/&gt; Mafer<span>Cachopo</span></div>
-        <ul class="nav-links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#sobre-mi">Perfil</a></li>
-            <li><a href="https://github.com/maferCachopo" target="_blank">GitHub</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-content">
-            <span class="profession-badge">Ingeniera en Informática</span>
-            <h1>Encantada, soy <br><span class="gradient-text">María Fernanda</span></h1>
-            <p>
-                Especialista en desarrollo web con experiencia en <b>Laravel, Vue.js y WordPress</b>. 
-                Enfocada en crear soluciones digitales optimizadas y funcionales.
-            </p>
+<body class="bg-slate-900 leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900">
+    
+    <div class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+        <div class="lg:flex lg:justify-between lg:gap-4">
             
-            <div class="btn-container">
-                <a href="https://github.com/maferCachopo" class="btn btn-primary" target="_blank">
-                    Ver Proyectos <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="TU_LINK_DE_CV" class="btn btn-download">
-                    <i class="fas fa-download"></i> Descargar CV
-                </a>
-            </div>
-
-            <div class="stats">
-                <div class="stat-item">
-                    <h3>2<span>+</span></h3>
-                    <p>Años de Experiencia</p>
+            <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
+                <div>
+                    <h1 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+                        <a href="/">Maria Fernanda Cachopo Rojas</a> [cite: 1]
+                    </h1>
+                    <h2 class="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
+                        Ingeniera Informática & Web Developer [cite: 34, 15]
+                    </h2>
+                    <p class="mt-4 max-w-xs leading-normal">
+                        Construyo soluciones digitales accesibles y optimizadas, combinando el desarrollo de software con la gestión estratégica. 
+                    </p>
+                    
+                    <nav class="nav hidden lg:block">
+                        <ul class="mt-16 w-max">
+                            <li><a class="group flex items-center py-3" href="#about"><span class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200"></span>Sobre mí</a></li>
+                            <li><a class="group flex items-center py-3" href="#experience"><span class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200"></span>Experiencia</a></li>
+                            <li><a class="group flex items-center py-3" href="#projects"><span class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200"></span>Proyectos</a></li>
+                        </ul>
+                    </nav>
                 </div>
-                <div class="stat-item">
-                    <h3>10<span>+</span></h3>
-                    <p>Proyectos Web</p>
-                </div>
-            </div>
-        </div>
+            </header>
 
-        <div class="hero-image">
-            <div class="image-wrapper">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&fit=crop" alt="María Fernanda Cachopo">
-            </div>
+            <main class="pt-24 lg:w-1/2 lg:py-24">
+                <section id="about" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
+                    <p class="mb-4">
+                        Soy estudiante de Ingeniería Informática en la UNET [cite: 33, 34] con pasión por el desarrollo web y la implementación de soluciones tecnológicas escalables. 
+                        Tengo experiencia trabajando con stacks modernos como <strong>Laravel</strong> y <strong>Vue.js</strong> , así como en la gestión de infraestructuras en <strong>WordPress</strong>.
+                    </p>
+                </section>
+
+                <section id="experience">
+                    <ol class="group/list">
+                        <li class="mb-12">
+                            <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                                <header class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2">
+                                    Ago. 2023 — Dic. 2023 [cite: 8, 9]
+                                </header>
+                                <div class="z-10 sm:col-span-6">
+                                    <h3 class="font-medium leading-snug text-slate-200">
+                                        Desarrolladora Web Junior · Villar Technologies 
+                                    </h3>
+                                    <p class="mt-2 text-sm leading-normal">
+                                        Implementación de soluciones utilizando Laravel para el backend y Vue.js para el frontend. 
+                                        Manejo de bases de datos SQL y maquetación responsiva[cite: 22, 23].
+                                    </p>
+                                    <ul class="mt-2 flex flex-wrap">
+                                        <li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Laravel</div></li>
+                                        <li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Vue.js</div></li>
+                                        <li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">SQL</div></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+            </main>
         </div>
-    </section>
+    </div>
+    <script>
+         document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            document.body.style.setProperty('--x', `${x}px`);
+            document.body.style.setProperty('--y', `${y}px`);
+         });
+    </script>
+   
 
 </body>
 </html>
+
