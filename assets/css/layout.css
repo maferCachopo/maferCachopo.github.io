@@ -1,0 +1,268 @@
+/* ==========================================================================
+   layout.css — contenedores, cabecera, secciones y pie
+   ========================================================================== */
+
+.wrap {
+  width: min(100% - 2.5rem, var(--wrap));
+  margin-inline: auto;
+}
+.wrap--tight { width: min(100% - 2.5rem, var(--wrap-tight)); }
+
+.section {
+  position: relative;
+  padding-block: var(--space-2xl);
+}
+.section--linen { background: var(--linen); }
+.section--ink {
+  background: var(--ink);
+  color: rgba(244, 242, 239, 0.72);
+}
+.section--ink h2,
+.section--ink h3 { color: var(--bone); }
+.section--ink .eyebrow { color: var(--taupe); }
+.section--ink .lead { color: rgba(244, 242, 239, 0.68); }
+.section--ink .wink { color: rgba(244, 242, 239, 0.6); }
+.section--ink .rule { border-color: var(--rule-dark); }
+
+/* Cabecera de sección: etiqueta, filete fino y titular. */
+.section__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  margin-bottom: var(--space-xl);
+  max-width: 60ch;
+}
+.section__head h2 { max-width: 16ch; }
+.section__head .eyebrow { align-self: flex-start; }
+
+.section__head--center {
+  margin-inline: auto;
+  align-items: center;
+  text-align: center;
+  max-width: 62ch;
+}
+.section__head--center h2 { max-width: 20ch; }
+.section__head--center p { margin-inline: auto; text-align: center; }
+
+/* --- Cabecera --- */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: var(--ink);
+  color: var(--bone);
+  border-bottom: 1px solid var(--rule-dark);
+  transition: box-shadow 0.4s var(--ease);
+}
+.header.is-stuck { box-shadow: 0 8px 30px rgba(36, 31, 27, 0.28); }
+
+.header__inner {
+  width: min(100% - 2.5rem, var(--wrap));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+}
+
+/* Logotipo completo, tal cual se entregó. La cabecera es alta para darle
+   sitio: el tagline necesita todo el ancho posible. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+}
+.brand img {
+  width: 258px;
+  height: auto;
+  transition: opacity 0.3s var(--ease);
+}
+.brand:hover img { opacity: 0.7; }
+
+/* --- Navegación --- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-l);
+}
+/* Sobre el marrón, el CTA se invierte a claro. */
+.nav .btn {
+  --btn-bg: var(--bone);
+  --btn-fg: var(--ink);
+  --btn-hover: var(--taupe);
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+}
+/* El CTA vive en la barra en escritorio y dentro del menú en móvil. */
+.nav__cta { display: none; }
+.nav__link {
+  position: relative;
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 242, 239, 0.68);
+  text-decoration: none;
+  padding-block: 0.5rem;
+  white-space: nowrap;
+  transition: color 0.25s var(--ease);
+}
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0.15rem;
+  width: 100%;
+  height: 1px;
+  background: var(--taupe);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+.nav__link:hover,
+.nav__link.is-active { color: var(--bone); }
+.nav__link:hover::after,
+.nav__link.is-active::after { transform: scaleX(1); }
+
+.nav__toggle {
+  display: none;
+  width: 44px; height: 44px;
+  place-items: center;
+  border: 1px solid var(--rule-dark);
+}
+.nav__toggle span {
+  display: block;
+  width: 18px; height: 1px;
+  background: var(--bone);
+  position: relative;
+  transition: background 0.2s var(--ease);
+}
+.nav__toggle span::before,
+.nav__toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px; height: 1px;
+  background: var(--bone);
+  transition: transform 0.3s var(--ease);
+}
+.nav__toggle span::before { top: -6px; }
+.nav__toggle span::after  { top: 6px; }
+.nav__toggle[aria-expanded="true"] span { background: transparent; }
+.nav__toggle[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] span::after  { transform: translateY(-6px) rotate(-45deg); }
+
+/* --- Pie --- */
+.footer {
+  background: var(--ink);
+  color: rgba(244, 242, 239, 0.6);
+  padding-block: var(--space-xl) calc(var(--space-l) + 3.5rem);
+  font-size: var(--step--1);
+  font-weight: 300;
+}
+.footer a { color: rgba(244, 242, 239, 0.82); text-decoration: none; }
+.footer a:hover { color: var(--cyan); }
+
+/* Cinco columnas, una por bloque: cada título arranca a la misma altura.
+   Apilar dos títulos en una columna descoloca todo lo que va debajo. */
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 0.85fr 1.05fr 1.05fr 0.8fr;
+  gap: var(--space-l) var(--space-m);
+  align-items: start;
+}
+.footer__logo { width: 265px; max-width: 62vw; margin-bottom: var(--space-m); }
+.footer__title {
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: var(--space-s);
+}
+.footer__list { display: flex; flex-direction: column; gap: 0.65rem; }
+
+.footer__bottom {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--rule-dark);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-m);
+  justify-content: space-between;
+  font-size: 0.76rem;
+  color: rgba(244, 242, 239, 0.4);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1080px) {
+  .nav { gap: var(--space-m); }
+  .nav__list { gap: 1.05rem; }
+  .nav__link { letter-spacing: 0.1em; }
+}
+
+/* Cinco bloques: en tres columnas quedan 3 + 2, sin dejar ninguno solo.
+   Por debajo de 860 el logotipo (265 px) ya no cabe en una tercera parte. */
+@media (max-width: 1180px) {
+  .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
+}
+
+@media (max-width: 860px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 900px) {
+  :root { --header-h: 84px; }
+  .nav__toggle { display: grid; }
+
+  .nav__list {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-m);
+    background: var(--ink);
+    padding: var(--space-2xl) var(--space-m);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.35s var(--ease), transform 0.35s var(--ease),
+                visibility 0.35s;
+  }
+  .nav__list.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .nav__list .nav__link {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    color: var(--bone);
+  }
+  .nav__list .nav__link::after { display: none; }
+  .nav > .btn { display: none; }
+  .nav__cta { display: block; margin-top: var(--space-s); }
+  .nav__toggle { z-index: 2; }
+  .brand img { width: 196px; }
+}
+
+@media (max-width: 620px) {
+  .footer__grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

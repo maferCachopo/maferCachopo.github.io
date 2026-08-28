@@ -1,0 +1,1091 @@
+/* ==========================================================================
+   components.css — botones, tarjetas, acordeón, línea de tiempo, marquesina
+   ========================================================================== */
+
+/* --- Botones: rectangulares, versalitas espaciadas --- */
+.btn {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--bone);
+  --btn-hover: var(--taupe-deep);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  padding: 1.15em 2.2em;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: var(--radius-s);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.35s var(--ease);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--btn-hover);
+  transform: translateY(100%);
+  transition: transform 0.45s var(--ease);
+}
+.btn:hover { color: var(--btn-fg); }
+.btn:hover::before { transform: translateY(0); }
+.btn svg { width: 1.15em; height: 1.15em; flex: none; }
+
+.btn--taupe { --btn-bg: var(--taupe); --btn-fg: var(--ink); --btn-hover: var(--ink); }
+.btn--taupe:hover { color: var(--bone); }
+
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  --btn-hover: var(--ink);
+  border: 1px solid var(--ink);
+}
+.btn--outline:hover { color: var(--bone); }
+
+.btn--light {
+  --btn-bg: var(--bone);
+  --btn-fg: var(--ink);
+  --btn-hover: var(--taupe);
+}
+
+.btn--sm { padding: 0.9em 1.5em; letter-spacing: 0.13em; }
+
+/* --- Números de contacto (pie y desplegable) --- */
+.tel-list { display: flex; flex-direction: column; gap: 0.9rem; }
+.tel {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.75rem;
+  align-items: center;
+  text-decoration: none;
+}
+.tel__flag {
+  grid-row: span 2;
+  width: 26px;
+  height: 17px;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgba(36, 31, 27, 0.15);
+}
+.tel__num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+.tel__pais {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--taupe);
+  line-height: 1.4;
+}
+.footer .tel__num { color: rgba(244, 242, 239, 0.82); transition: color 0.25s var(--ease); }
+.footer .tel:hover .tel__num { color: var(--cyan); }
+.footer .tel__flag { box-shadow: 0 0 0 1px rgba(244, 242, 239, 0.25); }
+
+/* --- Botón flotante de WhatsApp --- */
+.fab {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2.2rem);
+  bottom: clamp(1rem, 3vw, 2.2rem);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.7rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), visibility 0.4s;
+}
+.fab.is-visible { opacity: 1; visibility: visible; transform: none; }
+
+.fab__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem 1.3rem 0.9rem 0.9rem;
+  background: var(--ink);
+  color: var(--bone);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: var(--radius-s);
+  box-shadow: var(--shadow-m);
+  transition: background 0.3s var(--ease);
+}
+.fab__btn:hover { background: var(--taupe-deep); }
+.fab__icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.fab__icon svg { width: 26px; height: 26px; fill: var(--whatsapp); }
+.fab__icon::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border: 1px solid var(--whatsapp);
+  animation: pulse 3s var(--ease) infinite;
+  pointer-events: none;
+}
+/* Con el desplegable abierto el latido sobra: ya tiene la atención. */
+.fab.is-open .fab__icon::after { animation: none; opacity: 0; }
+@keyframes pulse {
+  0%   { transform: scale(1);   opacity: 0.65; }
+  70%  { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.fab__panel {
+  width: min(19rem, calc(100vw - 2.5rem));
+  padding: 1.1rem 1.1rem 0.6rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-m);
+  transform-origin: bottom right;
+  animation: desplegar 0.32s var(--ease);
+}
+.fab__panel[hidden] { display: none; }
+@keyframes desplegar {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+.fab__title {
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--taupe-deep);
+  margin-bottom: 0.4rem;
+}
+.fab__opt {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.7rem 0;
+  text-decoration: none;
+  color: var(--ink);
+  border-top: 1px solid var(--rule);
+  transition: color 0.25s var(--ease);
+}
+.fab__opt:hover { color: var(--taupe-deep); }
+.fab__opt-txt { display: flex; flex-direction: column; }
+.fab__opt .tel__num { font-size: 0.98rem; }
+
+@media (max-width: 560px) {
+  .fab__label { display: none; }
+  .fab__btn { padding: 0.85rem; }
+}
+
+/* --- Lista de resonancia --- */
+/* Tres columnas fijas: las seis frases caen en dos filas completas. */
+.echo__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--space-l);
+  border-top: 1px solid var(--rule);
+}
+@media (max-width: 900px) { .echo__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .echo__grid { grid-template-columns: 1fr; } }
+
+.echo {
+  position: relative;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  padding: 1.7rem 1.6rem 1.7rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--ink);
+  transition: color 0.3s var(--ease), padding-left 0.4s var(--ease);
+}
+.echo:hover { padding-left: 0.6rem; color: var(--taupe-deep); }
+.echo__dot {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 0.42em;
+  border: 1px solid var(--taupe);
+  display: grid;
+  place-items: center;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.echo__dot::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--bone);
+  transform: scale(0);
+  transition: transform 0.3s var(--ease);
+}
+.echo[aria-pressed="true"] { color: var(--ink); }
+.echo[aria-pressed="true"] .echo__dot {
+  background: var(--cyan-deep);
+  border-color: var(--cyan-deep);
+}
+.echo[aria-pressed="true"] .echo__dot::after { transform: scale(1); }
+
+.echo__meter {
+  margin-top: var(--space-l);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s) var(--space-l);
+}
+.echo__count {
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  line-height: 0.9;
+  color: var(--taupe);
+  font-variant-numeric: tabular-nums;
+  min-width: 1.6ch;
+}
+.echo__msg {
+  flex: 1 1 26ch;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+/* --- Servicios numerados --- */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  border-top: 1px solid var(--rule);
+}
+.service {
+  position: relative;
+  padding: var(--space-l) var(--space-m) var(--space-l) 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: background 0.4s var(--ease);
+}
+.service + .service {
+  border-left: 1px solid var(--rule);
+  padding-left: var(--space-m);
+}
+.service__num {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1;
+  color: var(--taupe);
+  font-variant-numeric: tabular-nums;
+}
+.service h3 { max-width: 14ch; }
+.service p { color: var(--ink-soft); font-size: 0.97rem; }
+.service::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: var(--taupe-deep);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.55s var(--ease);
+}
+.service:hover::after { transform: scaleX(1); }
+
+/* --- Estadísticas --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--space-m);
+  padding-block: var(--space-m);
+  border-block: 1px solid var(--rule);
+}
+.stat__num {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  display: block;
+}
+.stat__label {
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--taupe-deep);
+  margin-top: 0.7rem;
+  display: block;
+  line-height: 1.5;
+}
+
+/* --- Línea de tiempo --- */
+.timeline-wrap { position: relative; }
+
+.timeline {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: var(--space-s);
+  /* Sin barra de desplazamiento: el riel avanza solo y hay flechas. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Los extremos se desvanecen bajo las flechas, así nada se corta en seco. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+.timeline::-webkit-scrollbar { display: none; }
+
+.milestone {
+  flex: 0 0 min(82vw, 330px);
+  position: relative;
+  padding: var(--space-m) var(--space-m) var(--space-m) 0;
+  border-top: 1px solid var(--rule-dark);
+}
+.milestone + .milestone {
+  border-left: 1px solid var(--rule-dark);
+  padding-left: var(--space-m);
+}
+.milestone::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--taupe);
+  transition: transform 0.4s var(--ease);
+}
+.milestone + .milestone::before { left: var(--space-m); }
+.milestone:hover::before { transform: scale(1.9); }
+.milestone__when {
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--taupe);
+  display: block;
+  margin-bottom: 0.9rem;
+}
+.milestone h3 { font-size: var(--step-1); margin-bottom: 0.7rem; }
+.milestone p { color: rgba(244, 242, 239, 0.6); font-size: 0.94rem; }
+
+/* Flechas sobre el riel, una en cada extremo. Semitransparentes para no tapar. */
+.timeline__btn {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  color: var(--bone);
+  background: rgba(36, 31, 27, 0.45);
+  border: 1px solid rgba(244, 242, 239, 0.22);
+  border-radius: 50%;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0.55;
+  transition: opacity 0.3s var(--ease), background 0.3s var(--ease),
+              border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.timeline__btn--prev { left: 0; }
+.timeline__btn--next { right: 0; }
+.timeline-wrap:hover .timeline__btn { opacity: 0.85; }
+.timeline__btn:hover,
+.timeline__btn:focus-visible {
+  opacity: 1;
+  background: var(--taupe);
+  border-color: var(--taupe);
+  color: var(--ink);
+}
+.timeline__btn svg { width: 17px; height: 17px; }
+
+@media (max-width: 700px) {
+  /* En pantallas estrechas las flechas se encogen y se pegan al borde, y el
+     desvanecido es más ancho para que nunca corten una palabra a la mitad. */
+  .timeline__btn { width: 40px; height: 40px; opacity: 0.75; }
+  .timeline__btn svg { width: 14px; height: 14px; }
+  .timeline__btn--prev { left: -4px; }
+  .timeline__btn--next { right: -4px; }
+  .timeline {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 15%, #000 85%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 15%, #000 85%, transparent 100%);
+  }
+}
+
+/* --- Valores (acordeón) --- */
+.values { border-top: 1px solid var(--rule); }
+.value { border-bottom: 1px solid var(--rule); }
+.value__btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding: 1.6rem 0;
+  text-align: left;
+  transition: color 0.3s var(--ease);
+}
+.value__btn:hover { color: var(--taupe-deep); }
+.value__name {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+.value__sign {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  position: relative;
+}
+.value__sign::before,
+.value__sign::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.value__sign::before {
+  top: 50%;
+  left: 0;
+  width: 14px;
+  height: 1px;
+  margin-top: -0.5px;
+}
+.value__sign::after {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 14px;
+  margin-left: -0.5px;
+}
+.value__btn[aria-expanded="true"] .value__sign::after {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+.value__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease);
+}
+.value__panel[data-open="true"] { grid-template-rows: 1fr; }
+.value__panel > div { overflow: hidden; }
+.value__panel p {
+  padding-bottom: 1.8rem;
+  color: var(--ink-soft);
+  max-width: 58ch;
+}
+
+/* --- Marquesina de "verdades" --- */
+.marquee__row {
+  overflow: hidden;
+  padding-block: var(--space-s);
+  border-block: 1px solid var(--rule);
+}
+.marquee__row + .marquee__row { border-top: 0; }
+.marquee {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: slide var(--duration, 60s) linear infinite;
+}
+.marquee--reverse { animation-direction: reverse; }
+.marquee__row:hover .marquee { animation-play-state: paused; }
+@keyframes slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.truth {
+  flex: none;
+  max-width: 46ch;
+  padding-inline: var(--space-l);
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-style: italic;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  border-left: 1px solid var(--rule);
+}
+
+/* --- Cita destacada --- */
+.pullquote {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  max-width: 24ch;
+  color: var(--ink);
+  margin: 0;
+}
+.pullquote--center { max-width: 30ch; margin-inline: auto; text-align: center; }
+
+/* --- Figura con foto --- */
+.figure {
+  position: relative;
+  overflow: hidden;
+  background: var(--linen);
+  margin: 0;
+}
+.figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.4s var(--ease);
+}
+.figure:hover img { transform: scale(1.05); }
+.figure figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 3.5rem 1.4rem 1.2rem;
+  background: linear-gradient(transparent, rgba(36, 31, 27, 0.8));
+  color: rgba(244, 242, 239, 0.92);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* --- Aparición progresiva ---
+   Solo se oculta bajo .js: si el JavaScript no llega a ejecutarse, el
+   contenido se ve igualmente en lugar de quedarse invisible. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transition-delay: var(--delay, 0ms);
+}
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+@media (max-width: 700px) {
+  .service + .service { border-left: 0; padding-left: 0; }
+  .truth { border-left: 0; padding-inline: var(--space-m); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1; transform: none; }
+  .marquee { animation: none; }
+  .fab__icon::after { display: none; }
+}
+
+/* --- Reproductor de meditaciones ---
+   Panel espresso sobre la franja lino: se lee como un objeto, no como una
+   sección más. El taupe hace de acento (progreso, botón de play, pista activa). */
+.player {
+  --player-fg: var(--bone);
+  --player-dim: rgba(244, 242, 239, 0.58);
+  margin-top: var(--space-l);
+  background: var(--ink);
+  color: var(--player-fg);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-m);
+  overflow: hidden;
+}
+
+.player__now {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: var(--space-m);
+  padding: var(--space-m);
+}
+
+/* Portada: el isotipo sobre un degradado taupe, a falta de arte por pista. */
+.player__art {
+  position: relative;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-s);
+  background:
+    radial-gradient(120% 120% at 30% 20%, rgba(180, 156, 137, 0.55), transparent 62%),
+    linear-gradient(150deg, #3a322c, #241f1b 70%);
+  box-shadow: inset 0 0 0 1px var(--rule-dark);
+  overflow: hidden;
+}
+.player__art img {
+  width: 62%;
+  height: auto;
+  opacity: 0.92;
+}
+
+.player__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+.player__tipo { color: var(--taupe); }
+.player__titulo {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.1;
+  color: var(--player-fg);
+  margin: 0;
+}
+.player__desc {
+  color: var(--player-dim);
+  font-size: var(--step--1);
+  line-height: 1.6;
+  max-width: 52ch;
+  margin: 0;
+}
+
+/* Respaldo cuando el mp3 aún no está subido: el audio suena desde SoundCloud. */
+.player__aviso {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--rule-dark);
+  border-left: 2px solid var(--taupe);
+  border-radius: var(--radius-s);
+  font-size: var(--step--1);
+  color: var(--player-dim);
+}
+.player__aviso-txt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.9rem;
+  margin: 0;
+}
+.player__sc iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: var(--radius-s);
+}
+/* Mientras manda SoundCloud, nuestra botonera sobra: dos reproductores
+   uno encima de otro (y el nuestro apagado) solo confunden. */
+.player.is-unavailable .player__seekrow,
+.player.is-unavailable .player__ctrl { display: none; }
+/* display:flex pisa al atributo hidden del navegador: hay que repetirlo. */
+.player__aviso[hidden] { display: none; }
+.player__aviso a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  color: var(--cyan);
+  text-decoration: none;
+  font-weight: 500;
+}
+.player__aviso a:hover { text-decoration: underline; }
+.player__aviso svg { width: 1.25em; height: 1.25em; }
+
+/* --- Barra de progreso y volumen --- */
+.player__seekrow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}
+.player__time {
+  font-size: var(--step--2);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  color: var(--player-dim);
+}
+
+/* El relleno se pinta con --fill, que actualiza el JS en cada fotograma. */
+.player__seek,
+.player__range {
+  --fill: 0%;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--taupe) var(--fill),
+    rgba(244, 242, 239, 0.18) var(--fill)
+  );
+  cursor: pointer;
+}
+.player__seek:disabled { cursor: default; opacity: 0.4; }
+
+.player__seek::-webkit-slider-thumb,
+.player__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bone);
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s var(--ease);
+}
+.player__seek::-moz-range-thumb,
+.player__range::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bone);
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+.player__seek:hover::-webkit-slider-thumb { transform: scale(1.25); }
+.player__seek:focus-visible,
+.player__range:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+
+/* --- Botonera --- */
+.player__ctrl {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: var(--space-2xs);
+}
+.player__btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--player-dim);
+  cursor: pointer;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.player__btn svg { width: 22px; height: 22px; }
+.player__btn:hover { color: var(--player-fg); background: rgba(244, 242, 239, 0.08); }
+.player__btn:disabled { opacity: 0.3; cursor: default; }
+.player__btn:disabled:hover { background: transparent; color: var(--player-dim); }
+
+.player__btn--play {
+  width: 54px;
+  height: 54px;
+  background: var(--taupe);
+  color: var(--ink);
+}
+.player__btn--play svg { width: 26px; height: 26px; }
+.player__btn--play:hover {
+  background: var(--bone);
+  color: var(--ink);
+  transform: scale(1.05);
+}
+.player__btn--play:disabled:hover { transform: none; background: var(--taupe); }
+
+/* Un solo botón: play o pausa según el estado del audio. */
+.player__btn--play .ico-pause,
+.player.is-playing .player__btn--play .ico-play { display: none; }
+.player.is-playing .player__btn--play .ico-pause { display: block; }
+
+/* El volumen va junto a la botonera, no pegado al borde derecho: ahí es donde
+   flota el botón de WhatsApp y lo taparía. */
+.player__vol {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: var(--space-s);
+  color: var(--player-dim);
+}
+.player__vol svg { width: 20px; height: 20px; flex: none; }
+.player__vol .player__range { width: 90px; }
+.player.is-muted .player__vol { color: rgba(244, 242, 239, 0.3); }
+
+/* --- Lista de pistas --- */
+.player__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule-dark);
+}
+.track + .track { border-top: 1px solid var(--rule-dark); }
+
+.track__btn {
+  display: grid;
+  grid-template-columns: 2.2rem 2rem 1fr auto;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  padding: 0.95rem var(--space-m);
+  background: transparent;
+  border: 0;
+  color: var(--player-dim);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease);
+}
+.track__btn:hover { background: rgba(244, 242, 239, 0.05); color: var(--player-fg); }
+
+.track__n {
+  font-size: var(--step--2);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+  color: var(--taupe);
+}
+.track__icon { display: grid; place-items: center; }
+.track__icon svg { width: 18px; height: 18px; }
+.track__pause { display: none; }
+
+.track__txt { display: grid; gap: 0.15rem; min-width: 0; }
+.track__titulo {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1.2;
+  color: var(--player-fg);
+}
+.track__tipo {
+  font-size: var(--step--2);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.track__dur {
+  font-size: var(--step--2);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+.track.is-current .track__btn { background: rgba(180, 156, 137, 0.12); }
+.track.is-current .track__n { color: var(--player-fg); }
+.player.is-playing .track.is-current .track__play { display: none; }
+.player.is-playing .track.is-current .track__pause { display: block; }
+
+/* Pista sin mp3: se ve, pero se entiende que hoy vive en SoundCloud. */
+.track.is-missing .track__titulo { color: var(--player-dim); }
+.track.is-missing .track__dur { color: var(--cyan); }
+
+/* Ecualizador de la portada: solo se mueve mientras suena. */
+.eq {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: none;
+  align-items: flex-end;
+  gap: 3px;
+  height: 22px;
+}
+.player.is-playing .eq { display: flex; }
+.eq i {
+  width: 3px;
+  height: 30%;
+  background: var(--taupe);
+  border-radius: 1px;
+  animation: eq 900ms var(--ease) infinite alternate;
+}
+.eq i:nth-child(2) { animation-duration: 640ms; }
+.eq i:nth-child(3) { animation-duration: 1120ms; }
+.eq i:nth-child(4) { animation-duration: 780ms; }
+@keyframes eq {
+  from { height: 22%; }
+  to   { height: 100%; }
+}
+.player.is-still .eq { display: none; }
+
+@media (max-width: 720px) {
+  .player__now { grid-template-columns: 1fr; }
+  .player__art { max-width: 190px; }
+  .player__ctrl { flex-wrap: wrap; }
+  .player__vol { margin-left: 0; width: 100%; }
+  .player__vol .player__range { flex: 1; width: auto; }
+  /* El progreso ocuparía dos renglones con las horas a los lados. */
+  .player__seekrow { gap: 0.6rem; }
+  .track__btn {
+    grid-template-columns: 2rem 1fr auto;
+    padding-inline: var(--space-s);
+  }
+  .track__n { display: none; }
+}
+
+/* --- Redes sociales --- */
+.redes { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.red {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.red__icon { width: 20px; height: 20px; flex: none; }
+
+/* Fila de iconos sueltos (cierre de la página). */
+.redes:not(.redes--lista) .red {
+  width: 46px;
+  height: 46px;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  color: var(--ink-soft);
+}
+.redes:not(.redes--lista) .red:hover {
+  color: var(--bone);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+/* Columna del pie: mismo interlineado que .footer__list, para que las tres
+   columnas de enlaces lean como una sola retícula. */
+.redes--lista { flex-direction: column; gap: 0.65rem; }
+.red__nombre { font-size: var(--step--1); }
+.footer .red { color: rgba(244, 242, 239, 0.82); }
+.footer .red:hover { color: var(--cyan); }
+
+/* --- Correo en el pie --- */
+.footer__mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: var(--step--1);
+  word-break: break-all;
+}
+.footer__mail svg { width: 19px; height: 19px; flex: none; }
+.footer__title--gap { margin-top: var(--space-m); }
+
+/* --- Botón de sonido del video ---
+   El video arranca mudo (es la única forma de que arranque solo), así que
+   hace falta decir dónde se le da voz. */
+.videoblock__sonido {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.9rem;
+  border: 0;
+  border-radius: 100px;
+  background: rgba(36, 31, 27, 0.72);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.25s var(--ease), color 0.25s var(--ease);
+}
+.videoblock__sonido:hover { background: var(--taupe); color: var(--ink); }
+.videoblock__sonido svg { width: 16px; height: 16px; flex: none; }
+.videoblock__sonido .ico-sonando { display: none; }
+.videoblock__sonido.is-on .ico-sonando { display: block; }
+.videoblock__sonido.is-on .ico-mudo { display: none; }
+
+/* --- Formulario --- */
+.form {
+  display: grid;
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+}
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-m);
+}
+
+.field { display: grid; gap: 0.5rem; margin: 0; }
+.field__label {
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--taupe-deep);
+}
+
+/* Filete bajo el campo en lugar de caja: es el gesto de toda la página. */
+.field__input {
+  width: 100%;
+  padding: 0.75rem 0.2rem;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 300;
+  color: var(--ink);
+  transition: border-color 0.25s var(--ease);
+}
+.field__input::placeholder { color: var(--ink-soft); opacity: 0.55; }
+.field__input:hover { border-color: var(--taupe); }
+.field__input:focus {
+  outline: none;
+  border-color: var(--ink);
+  border-bottom-width: 2px;
+  padding-bottom: calc(0.75rem - 1px);
+}
+.field__input--area { resize: vertical; min-height: 7rem; line-height: 1.6; }
+
+/* El desplegable trae su propia flecha del sistema; se le hace sitio. */
+select.field__input {
+  appearance: none;
+  padding-right: 2rem;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--taupe-deep) 50%),
+                    linear-gradient(135deg, var(--taupe-deep) 50%, transparent 50%);
+  background-position: right 0.85rem center, right 0.5rem center;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.field__input.is-invalid { border-color: #B4453C; }
+.field__error {
+  font-size: var(--step--2);
+  color: #B4453C;
+  min-height: 1em;
+}
+.field__error:empty { min-height: 0; }
+
+.form__pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+  margin-top: var(--space-xs);
+}
+.form__nota {
+  margin: 0;
+  font-size: var(--step--2);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 32ch;
+}
+.form__ok {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  border-left: 2px solid var(--taupe);
+  background: rgba(180, 156, 137, 0.14);
+  font-size: var(--step--1);
+  line-height: 1.6;
+  color: var(--ink);
+}
+.form__ok[hidden] { display: none; }
+
+@media (max-width: 620px) {
+  .form__row { grid-template-columns: 1fr; }
+  .form__pie { gap: var(--space-s); }
+  .form__pie .btn { width: 100%; }
+  .form__nota { max-width: none; }
+  .videoblock__sonido {
+    top: 0.6rem;
+    right: 0.6rem;
+    padding: 0.45rem 0.7rem;
+    letter-spacing: 0.06em;
+  }
+}

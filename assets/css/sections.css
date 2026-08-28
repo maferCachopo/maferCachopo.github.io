@@ -1,0 +1,277 @@
+/* ==========================================================================
+   sections.css — composiciones específicas de cada sección
+   ========================================================================== */
+
+/* --- Hero: foto a sangre bajo un velo espresso --- */
+.hero {
+  position: relative;
+  min-height: min(92svh, 860px);
+  margin-top: var(--header-h);
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-2xl);
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--bone);
+  text-align: center;
+}
+.hero__bg { position: absolute; inset: 0; }
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% 52%;
+}
+/* El velo cálido baja el contraste de la foto para que el titular respire. */
+.hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(36, 31, 27, 0.55) 0%, rgba(36, 31, 27, 0.42) 45%,
+                    rgba(36, 31, 27, 0.78) 100%),
+    radial-gradient(120% 80% at 50% 45%, rgba(36, 31, 27, 0.1), rgba(36, 31, 27, 0.6));
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-m);
+  max-width: 46rem;
+  margin-inline: auto;
+}
+.hero .eyebrow { color: var(--taupe); }
+.hero h1 {
+  color: var(--bone);
+  max-width: 14ch;
+}
+.hero__claim {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--step-2);
+  line-height: 1.3;
+  color: var(--taupe);
+  max-width: 26ch;
+  margin: 0;
+  text-wrap: balance;
+}
+.hero p:not(.eyebrow):not(.hero__claim) {
+  color: rgba(244, 242, 239, 0.78);
+  max-width: 54ch;
+  text-align: center;
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-s);
+  margin-top: var(--space-xs);
+}
+.hero__note {
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 242, 239, 0.55) !important;
+}
+
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.8rem;
+  z-index: 1;
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: rgba(244, 242, 239, 0.55);
+  text-decoration: none;
+  display: grid;
+  justify-items: center;
+  gap: 0.7rem;
+}
+.scroll-hint::after {
+  content: "";
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(rgba(244, 242, 239, 0.6), transparent);
+  animation: drop 2.6s var(--ease) infinite;
+}
+@keyframes drop {
+  0%, 100% { transform: scaleY(0.35); transform-origin: top; opacity: 0.35; }
+  50%      { transform: scaleY(1);    transform-origin: top; opacity: 1; }
+}
+@media (max-width: 900px) { .scroll-hint { display: none; } }
+
+/* --- Bloque editorial a dos columnas --- */
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: var(--space-xl);
+  align-items: center;
+}
+.split--top { align-items: start; }
+.split__body { display: grid; gap: var(--space-s); }
+.split__body .eyebrow { justify-self: start; margin-bottom: var(--space-2xs); }
+.split__body h2 { max-width: 15ch; }
+
+.split__media { position: relative; }
+/* Marco taupe desplazado: el gesto editorial de la referencia. */
+.split__media::before {
+  content: "";
+  position: absolute;
+  inset: -18px -18px 18px 18px;
+  border: 1px solid var(--taupe);
+  pointer-events: none;
+  z-index: 0;
+}
+.split__media .figure { position: relative; z-index: 1; }
+
+/* --- Propósito y visión --- */
+.duo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--rule);
+}
+.duo__card { display: grid; gap: var(--space-s); align-content: start; }
+
+/* --- Bio ---
+   El texto es más largo que las fotos: fijarlas evita un hueco muerto. */
+.bio__media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-s);
+}
+@media (min-width: 901px) {
+  .bio__media {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-m));
+  }
+}
+.bio__media .figure:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 10;
+}
+.bio__media .figure:not(:first-child) { aspect-ratio: 3 / 4; }
+
+/* --- Cierre --- */
+.closing {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-m);
+  text-align: center;
+}
+.closing p { margin-inline: auto; text-align: center; }
+
+/* --- Marca de agua del isotipo --- */
+.watermark {
+  position: absolute;
+  right: -4%;
+  top: 50%;
+  width: min(380px, 34vw);
+  transform: translateY(-50%);
+  opacity: 0.06;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  .split { gap: var(--space-l); }
+  .split__media::before { inset: -12px -12px 12px 12px; }
+  .watermark { display: none; }
+}
+
+/* --- Video ---
+   El archivo es vertical (720x1280). En lugar de estirarlo, se enmarca como
+   un reel: alto acotado, ancho proporcional y filete taupe detrás. */
+/* El video va a la izquierda a propósito: sus controles nativos están abajo a
+   la derecha, justo donde flota el botón de WhatsApp. */
+.videoblock {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xl);
+}
+.videoblock__txt {
+  display: grid;
+  gap: var(--space-s);
+  justify-items: start;
+  max-width: 46ch;
+}
+.videoblock__txt h2 { max-width: 14ch; }
+
+.videoblock__media {
+  position: relative;
+  justify-self: start;
+}
+.videoblock__media::before {
+  content: "";
+  position: absolute;
+  inset: -18px 18px 18px -18px;
+  border: 1px solid var(--taupe);
+  border-radius: var(--radius-m);
+  pointer-events: none;
+}
+.videoblock__media video {
+  display: block;
+  width: auto;
+  height: min(70vh, 620px);
+  max-width: 100%;
+  aspect-ratio: 9 / 16;
+  background: var(--ink);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-m);
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .videoblock {
+    grid-template-columns: 1fr;
+    gap: var(--space-l);
+    justify-items: center;
+    text-align: center;
+  }
+  .videoblock__txt { justify-items: center; }
+  .videoblock__txt h2 { max-width: none; }
+  .videoblock__media { justify-self: center; }
+  .videoblock__media::before { inset: -12px -12px 12px 12px; }
+  .videoblock__media video { height: min(64vh, 520px); }
+}
+
+/* --- Cierre: correo y redes bajo el botón --- */
+.closing__alt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 0.7rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+.closing__alt a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--taupe);
+  padding-bottom: 1px;
+  word-break: break-all;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.closing__alt a:hover { color: var(--taupe-deep); border-color: var(--taupe-deep); }
+.closing__alt svg { width: 1.15em; height: 1.15em; flex: none; }
+
+.closing__redes {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-s);
+}

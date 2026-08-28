@@ -1,0 +1,68 @@
+/* ==========================================================================
+   tokens.css — Sistema de diseño Alberto Chirinos
+   Editorial cálido: neutros greige, espresso y un acento taupe.
+   El cian del manual de marca (#65C4DA) se reserva al logotipo y a los
+   estados interactivos, para que no compita con la paleta.
+   ========================================================================== */
+
+:root {
+  /* ---- Color ---- */
+  --bone:        #F4F2EF;  /* fondo base */
+  --linen:       #EAE4DD;  /* franjas alternas */
+  --paper:       #FFFFFF;  /* superficies elevadas */
+
+  --ink:         #241F1B;  /* texto y paneles oscuros */
+  --ink-mid:     #4A423B;  /* texto sobre fondo oscuro atenuado */
+  --ink-soft:    #6B6259;  /* texto secundario */
+  --rule:        #DAD2C8;  /* filetes sobre claro */
+  --rule-dark:   rgba(244, 242, 239, 0.16);
+
+  --taupe:       #B49C89;  /* acento: etiquetas, filetes, detalles */
+  --taupe-deep:  #8E7461;  /* acento con contraste para texto */
+  --taupe-soft:  #E4D9D0;  /* relleno tenue */
+
+  --cyan:        #65C4DA;  /* marca: logotipo y acentos sobre oscuro */
+  --cyan-deep:   #2E7C8E;  /* marca legible sobre claro */
+
+  --whatsapp:    #25D366;
+
+  /* ---- Tipografía ----
+     Instrument Serif recoge el aire editorial de alto contraste;
+     Red Hat Display sostiene el texto corrido y las etiquetas. */
+  --font-display: "Instrument Serif", "Bodoni Moda", Georgia, serif;
+  --font-body:    "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
+
+  --step--2: 0.72rem;
+  --step--1: clamp(0.8rem, 0.77rem + 0.13vw, 0.88rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
+  --step-1:  clamp(1.18rem, 1.1rem + 0.36vw, 1.4rem);
+  --step-2:  clamp(1.5rem, 1.3rem + 0.9vw, 2.15rem);
+  --step-3:  clamp(2rem, 1.6rem + 1.8vw, 3.1rem);
+  --step-4:  clamp(2.5rem, 1.85rem + 2.9vw, 4.4rem);
+  --step-5:  clamp(3rem, 2rem + 4.6vw, 6rem);
+
+  /* ---- Ritmo ---- */
+  --space-2xs: 0.35rem;
+  --space-xs:  0.6rem;
+  --space-s:   1rem;
+  --space-m:   1.7rem;
+  --space-l:   2.8rem;
+  --space-xl:  4.5rem;
+  --space-2xl: clamp(4.5rem, 10vw, 9rem);
+
+  --measure:    66ch;
+  --wrap:       1240px;
+  --wrap-tight: 800px;
+
+  --radius-s: 2px;
+  --radius-m: 3px;
+
+  --shadow-s: 0 1px 2px rgba(36, 31, 27, 0.04), 0 10px 30px rgba(36, 31, 27, 0.06);
+  --shadow-m: 0 2px 6px rgba(36, 31, 27, 0.05), 0 26px 60px rgba(36, 31, 27, 0.11);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --header-h: 104px;
+
+  /* Etiquetas en versalitas: el gesto que sostiene todo el estilo. */
+  --track-label: 0.2em;
+}

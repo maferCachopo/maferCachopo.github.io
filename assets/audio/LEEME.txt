@@ -1,0 +1,16 @@
+Aquí van los audios de las meditaciones, en mp3.
+
+El primero que espera la página es:
+
+    alivio-del-dolor-emocional.mp3
+
+Copia el archivo aquí con ese nombre exacto (todo en minúsculas, con guiones y
+sin tildes) y el reproductor lo tomará solo: leerá la duración y mostrará su
+propia barra de progreso con los colores de la marca.
+
+Mientras el archivo no esté, la página NO se queda muda: la pista se reproduce
+igual, incrustada desde SoundCloud, y se avisa de ello. Al copiar el mp3 aquí,
+ese reproductor prestado desaparece solo.
+
+Para añadir más meditaciones: copia el mp3 aquí y añade su ficha en
+assets/js/config.js, en la lista MEDITACIONES.

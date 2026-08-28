@@ -1,108 +1,903 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maria Fernanda Cachopo | Computer Science Student & Web Developer</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alberto Chirinos | Comprende tu historia. Vuelve a ti.</title>
+<meta name="description" content="Desde 1995, Alberto Chirinos acompaña a personas, familias y equipos en procesos de crecimiento humano y transformación emocional. Encuentros individuales, experiencias vivenciales y trabajo con familias y organizaciones.">
+<meta name="author" content="Alberto Chirinos — Integración al Ser C.A.">
+<meta name="theme-color" content="#F4F2EF">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_VE">
+<meta property="og:title" content="Alberto Chirinos | Comprende tu historia. Vuelve a ti.">
+<meta property="og:description" content="Acompañamiento en crecimiento humano y transformación emocional desde 1995.">
+<meta property="og:image" content="assets/img/hero-camino.jpg">
+
+<link rel="icon" href="assets/img/favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="180x180">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+<script>document.documentElement.classList.add('js');</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Red+Hat+Display:ital,wght@0,300..700;1,300..500&display=swap">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/sections.css">
 </head>
+
 <body>
-    <div class="glow-container">
-        <div class="container">
-            <header class="sidebar">
-                <div>
-                    <img src="foto.jpg" alt="Maria Fernanda Profile Photo" class="profile-photo">
-                    <h1 class="name">Maria Fernanda Cachopo Rojas</h1>
-                    <h2 class="title">Computer Science Student & Web Developer</h2>
-                    <p class="description">Building accessible and optimized digital solutions, combining software development with strategic management.</p>
-                    
-                    <nav class="nav">
-                        <ul>
-                            <li><a href="#about">ABOUT</a></li>
-                            <li><a href="#experience">EXPERIENCE</a></li>
-                            <li><a href="#skills">SKILLS</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-            <main class="content">
-                <section id="about">
-                    <p>I am a 8th-semester Computer Science student at UNET, passionate about web development and implementing scalable technological solutions. I have experience working with modern stacks such as <strong>Laravel and Vue.js</strong>, as well as infrastructure management using <strong>WordPress</strong>.</p>
-                </section>
+<!-- Banderas como SVG: Windows no dibuja los emoji de bandera, muestra las
+     letras del país. Se definen una vez y se reutilizan con <use>. -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <symbol id="bandera-ve" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#CF142B"/>
+    <rect width="30" height="13.34" fill="#00247D"/>
+    <rect width="30" height="6.67" fill="#FFCC00"/>
+    <g fill="#fff">
+      <circle cx="10.11" cy="13.02" r="0.62"/><circle cx="11.02" cy="11.46" r="0.62"/>
+      <circle cx="12.40" cy="10.30" r="0.62"/><circle cx="14.10" cy="9.68" r="0.62"/>
+      <circle cx="15.90" cy="9.68" r="0.62"/><circle cx="17.60" cy="10.30" r="0.62"/>
+      <circle cx="18.98" cy="11.46" r="0.62"/><circle cx="19.89" cy="13.02" r="0.62"/>
+    </g>
+  </symbol>
+  <symbol id="bandera-co" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#CE1126"/>
+    <rect width="30" height="15" fill="#003893"/>
+    <rect width="30" height="10" fill="#FCD116"/>
+  </symbol>
 
-                <section id="experience">
-                    <div class="experience-item">
-                        <div class="date">AUG 2023 — DEC 2023</div>
-                        <div class="details">
-                            <h3>Junior Web Developer · Villar Technologies</h3>
-                            <p>Implemented full-stack solutions using Laravel for the backend and Vue.js for the frontend. Managed SQL databases and ensured responsive web design across all devices.</p>
-                            <div class="tags">
-                                <span>Laravel</span><span>Vue.js</span><span>SQL</span><span>JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
+  <!-- Iconos de redes. Se pintan con currentColor, así heredan el color
+       del sitio donde estén (pie oscuro, sección clara…). -->
+  <symbol id="ico-instagram" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.13-1.38.66-.67 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.93 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/>
+    <path fill="currentColor" d="M12 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+    <circle fill="currentColor" cx="18.41" cy="5.59" r="1.44"/>
+  </symbol>
+  <symbol id="ico-facebook" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.12 24v-8.44H7.08v-3.49h3.04V9.41c-.01-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/>
+  </symbol>
+  <symbol id="ico-tiktok" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.2v12.85a2.6 2.6 0 0 1-2.6 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.1-2.55V9.93a5.8 5.8 0 0 0-.5-.03A5.79 5.79 0 0 0 3.96 15.7 5.79 5.79 0 0 0 9.75 21.5a5.79 5.79 0 0 0 5.8-5.79V9.01a7.45 7.45 0 0 0 4.36 1.4V7.2a4.3 4.3 0 0 1-3.3-1.39z"/>
+  </symbol>
+  <symbol id="ico-correo" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 4.76-8-4.76V6l8 4.76L20 6z"/>
+  </symbol>
+  <symbol id="ico-soundcloud" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M1.2 13.2c-.1 0-.2.1-.2.2l-.2 1.9.2 1.9c0 .1.1.2.2.2s.2-.1.2-.2l.2-1.9-.2-1.9c0-.1-.1-.2-.2-.2zm1.6-.7c-.1 0-.2.1-.2.2l-.2 2.6.2 2.5c0 .1.1.2.2.2.1 0 .2-.1.2-.2l.3-2.5-.3-2.6c0-.1-.1-.2-.2-.2zm1.7-.5c-.1 0-.3.1-.3.3l-.2 3 .2 2.5c0 .2.1.3.3.3.1 0 .3-.1.3-.3l.2-2.5-.2-3c0-.2-.1-.3-.3-.3zm1.8-.5c-.2 0-.3.1-.3.3l-.2 3.6.2 2.4c0 .2.1.3.3.3s.3-.1.3-.3l.2-2.4-.2-3.6c0-.2-.1-.3-.3-.3zm2.1.3c0-.2-.2-.4-.4-.4s-.4.2-.4.4l-.2 3.6.2 2.4c0 .2.2.4.4.4s.4-.2.4-.4l.2-2.4zm1.5-2.5c-.2 0-.4.2-.4.4l-.2 6.1.2 2.3c0 .2.2.4.4.4s.4-.2.4-.4l.2-2.3-.2-6.1c0-.2-.2-.4-.4-.4zm1.8-.6c-.3 0-.5.2-.5.5l-.2 6.7.2 2.3c0 .3.2.5.5.5s.5-.2.5-.5l.2-2.3-.2-6.7c0-.3-.2-.5-.5-.5zm1.8.2c-.3 0-.5.2-.5.5l-.1 6.5.1 2.2c0 .3.2.5.5.5s.5-.2.5-.5l.2-2.2-.2-6.5c0-.3-.2-.5-.5-.5zm1.9-1.4c-.3 0-.5.2-.5.6l-.1 7.9.1 2.2c0 .3.2.6.5.6.3 0 .6-.3.6-.6l.1-2.2-.1-7.9c0-.3-.3-.6-.6-.6zm2.5 10.6-.1 2.1c0 .3.3.6.6.6s.6-.3.6-.6l.1-2.1-.1-8.7c0-.3-.3-.6-.6-.6s-.6.3-.6.6zm2.2-9.4c-.4 0-.6.3-.6.6l-.1 8.8.1 2.1c0 .3.3.6.6.6s.6-.3.6-.6l.1-2.1-.1-8.8c0-.3-.3-.6-.6-.6zM21.4 12c-.5 0-.9.1-1.3.3-.3-3-2.8-5.3-5.9-5.3-.7 0-1.5.1-2.1.4-.2.1-.3.2-.3.4v10.6c0 .2.2.4.4.4h9.2c1.8 0 3.3-1.5 3.3-3.4 0-1.9-1.5-3.4-3.3-3.4z"/>
+  </symbol>
+</svg>
 
-                    <div class="experience-item">
-                        <div class="date">DEC 2023 — PRESENT</div>
-                        <div class="details">
-                            <h3>Academic Coordinator & Web Dev · Yeka Coach Academy</h3>
-                            <p>Led the full migration and development of the company website on WordPress. Implemented automation solutions and Meta pixel configurations for marketing analytics tracking.</p>
-                            <a href="https://yekacoach.com/" target="_blank" class="visit-btn">
-                                Visit Site 
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"></path></svg>
-                            </a>
-                            <div class="tags">
-                                <span>WordPress</span><span>Elementor</span><span>Meta Pixel</span><span>SEO</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+<!-- ====================== Cabecera ====================== -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a class="brand" href="#inicio" aria-label="Alberto Chirinos — inicio">
+      <img src="assets/img/logo-chirinos.png" alt="Chirinos — Sanación más allá de lo visible"
+           width="1400" height="444">
+    </a>
 
-                <section id="skills" class="skills-section">
-                    <h2 class="section-title">Skills & Technologies</h2>
+    <nav class="nav" aria-label="Navegación principal">
+      <ul class="nav__list" id="nav-list">
+        <li><a class="nav__link" href="#meditaciones">Meditaciones</a></li>
+        <li><a class="nav__link" href="#reconoces">¿Te suena?</a></li>
+        <li><a class="nav__link" href="#mision">Misión</a></li>
+        <li><a class="nav__link" href="#acompanamiento">Acompañamiento</a></li>
+        <li><a class="nav__link" href="#alberto">Alberto</a></li>
+        <li><a class="nav__link" href="#historia">Historia</a></li>
+        <li><a class="nav__link" href="#valores">Valores</a></li>
+        <li class="nav__cta"><a class="btn btn--sm" data-wa data-wa-msg="hola">Quiero comenzar</a></li>
+      </ul>
+      <a class="btn btn--sm" data-wa data-wa-msg="hola">Quiero comenzar</a>
+      <button class="nav__toggle" id="nav-toggle" type="button"
+              aria-expanded="false" aria-controls="nav-list" aria-label="Abrir menú">
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</header>
 
-                    <div class="skill-group">
-                        <h3>Fullstack Development & Languages</h3>
-                        <div class="tags">
-                            <span>PHP</span><span>Laravel</span><span>Vue.js</span><span>JavaScript</span>
-                            <span>HTML5</span><span>CSS3</span><span>Java</span><span>C</span><span>SQL</span>
-                        </div>
-                    </div>
+<main id="contenido">
 
-                    <div class="skill-group">
-                        <h3>CMS & Digital Marketing</h3>
-                        <div class="tags">
-                            <span>WordPress Expert</span><span>Elementor</span><span>SEO Strategy</span>
-                            <span>Meta Pixel (Analytics)</span><span>Digital Marketing</span>
-                        </div>
-                    </div>
+<!-- ====================== Hero ====================== -->
+<section class="hero" id="inicio">
+  <div class="hero__bg">
+    <picture>
+      <source srcset="assets/img/hero-camino.webp" type="image/webp">
+      <img src="assets/img/hero-camino.jpg" alt="" fetchpriority="high" width="1718" height="915">
+    </picture>
+  </div>
 
-                    <div class="skill-group">
-                        <h3>Management & Leadership (Soft Skills)</h3>
-                        <div class="tags">
-                            <span>Team Coordination</span><span>Assertive Communication</span>
-                            <span>Strategic Planning</span><span>Staff Training</span>
-                        </div>
-                    </div>
+  <div class="wrap">
+    <div class="hero__inner">
+      <p class="eyebrow" data-reveal>Crecimiento humano · desde 1995</p>
 
-                    <div class="skill-group">
-                        <h3>Tools & Languages</h3>
-                        <div class="tags">
-                            <span>Git / GitHub</span><span>English (B2 - Upper Intermediate)</span><span>SPSS (Statistics)</span><span>G Suite</span>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
+      <h1 data-reveal style="--delay:80ms">Comprende tu historia</h1>
+      <p class="hero__claim" data-reveal style="--delay:150ms">
+        Transforma tu presente. Vuelve a ti.
+      </p>
+
+      <p data-reveal style="--delay:220ms">
+        Soy Alberto Chirinos. Desde 1995 acompaño a personas, familias y equipos en procesos
+        de crecimiento humano y transformación emocional. Te ayudo a comprender lo que sientes,
+        reconocer lo que repites y relacionarte de una manera más consciente contigo y con los demás.
+      </p>
+
+      <div class="hero__actions" data-reveal style="--delay:300ms">
+        <a class="btn btn--light" data-wa data-wa-msg="hola">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.3-.7.3-1.3.2-1.5 0-.1-.2-.2-.5-.3z"/><path d="M12 2A10 10 0 0 0 3.5 17.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.6z"/></svg>
+          Quiero comenzar
+        </a>
+        <a class="btn btn--outline" href="#acompanamiento"
+           style="border-color: rgba(244,242,239,.45); color: var(--bone)">Cómo acompaño</a>
+      </div>
+
+      <p class="hero__note" data-reveal style="--delay:380ms">
+        Presencial y en línea · Venezuela y Colombia
+      </p>
+    </div>
+  </div>
+
+  <a class="scroll-hint" href="#meditaciones" aria-label="Ir a la siguiente sección">Sigue</a>
+</section>
+
+<!-- ====================== Meditaciones (reproductor) ====================== -->
+<!-- La lista de pistas y todo lo que dice el reproductor sale de
+     MEDITACIONES, en assets/js/config.js. Aquí solo está el armazón. -->
+<section class="section section--linen" id="meditaciones">
+  <div class="wrap">
+    <div class="section__head section__head--center">
+      <p class="eyebrow" data-reveal>Para escuchar</p>
+      <h2 data-reveal style="--delay:60ms">
+        Meditaciones y ejercicios <span class="accent">guiados</span>
+      </h2>
+      <p class="lead" data-reveal style="--delay:120ms">
+        Ponte cómodo, busca un lugar tranquilo y dale al play. Son prácticas
+        breves para volver al cuerpo cuando la cabeza no da tregua.
+      </p>
     </div>
 
-    <script>
-        document.addEventListener('mousemove', (e) => {
-            document.body.style.setProperty('--x', `${e.clientX}px`);
-            document.body.style.setProperty('--y', `${e.clientY}px`);
-        });
-    </script>
+    <div class="player" id="player" data-reveal style="--delay:180ms">
+      <div class="player__now">
+        <div class="player__art">
+          <img id="player-portada" src="assets/img/isotipo.png" alt="" width="200" height="200">
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </div>
+
+        <div class="player__meta">
+          <p class="player__tipo eyebrow" id="player-tipo">Ejercicio guiado</p>
+          <h3 class="player__titulo" id="player-titulo">Alivio del dolor emocional</h3>
+          <p class="player__desc" id="player-desc"></p>
+
+          <!-- Respaldo mientras no esté el mp3: el audio suena igual, pero
+               desde SoundCloud. El JS crea el iframe solo si hace falta. -->
+          <div class="player__aviso" id="player-aviso" hidden>
+            <p class="player__aviso-txt">
+              Este audio todavía se reproduce desde SoundCloud.
+              <a href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-soundcloud"/></svg>
+                Abrir en SoundCloud
+              </a>
+            </p>
+            <div class="player__sc" id="player-sc"></div>
+          </div>
+
+          <div class="player__seekrow">
+            <span class="player__time" id="player-actual">0:00</span>
+            <input class="player__seek" id="player-seek" type="range"
+                   min="0" max="100" step="0.1" value="0"
+                   aria-label="Avanzar o retroceder en el audio">
+            <span class="player__time" id="player-total">--:--</span>
+          </div>
+
+          <div class="player__ctrl">
+            <button class="player__btn" id="player-prev" type="button" aria-label="Pista anterior">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 6h2v12H6zm3.5 6L18 6v12z"/></svg>
+            </button>
+
+            <button class="player__btn player__btn--play" id="player-play" type="button"
+                    aria-label="Reproducir" aria-pressed="false">
+              <svg class="ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="ico-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3.5v14H7zm6.5 0H17v14h-3.5z"/></svg>
+            </button>
+
+            <button class="player__btn" id="player-next" type="button" aria-label="Pista siguiente">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 6h2v12h-2zM6 6l8.5 6L6 18z"/></svg>
+            </button>
+
+            <span class="player__vol">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zm12.5 3a4 4 0 0 0-2.5-3.7v7.4a4 4 0 0 0 2.5-3.7z"/></svg>
+              <input class="player__range" id="player-vol" type="range"
+                     min="0" max="100" value="85" aria-label="Volumen">
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <ol class="player__lista" id="player-lista"></ol>
+
+      <audio id="player-audio" preload="metadata"></audio>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ¿Te resulta familiar? ====================== -->
+<section class="section" id="reconoces">
+  <div class="wrap">
+    <div class="section__head section__head--center">
+      <p class="eyebrow" data-reveal>Reconocerte</p>
+      <h2 data-reveal style="--delay:60ms">¿Algo de esto te resulta <span class="accent">familiar</span>?</h2>
+      <p class="lead" data-reveal style="--delay:120ms">
+        La vida no trae manual de instrucciones. Sin embargo, trae señales, relaciones que nos
+        enseñan y algunas lecciones que regresan tantas veces que ya deberían pagar alquiler.
+      </p>
+      <p data-reveal style="--delay:170ms">
+        Marca lo que reconozcas. Nadie lo está viendo, y a veces nombrarlo ya cambia algo.
+      </p>
+    </div>
+
+    <div class="echo__grid" id="echo-grid">
+      <button class="echo" type="button" aria-pressed="false" data-reveal>
+        <span class="echo__dot" aria-hidden="true"></span>
+        <span>Dices «ya lo superé», pero recuerdas la fecha, la hora y hasta cómo estaba el clima.</span>
+      </button>
+      <button class="echo" type="button" aria-pressed="false" data-reveal style="--delay:60ms">
+        <span class="echo__dot" aria-hidden="true"></span>
+        <span>Quieres poner límites y terminas pidiendo disculpas por haberlos pensado.</span>
+      </button>
+      <button class="echo" type="button" aria-pressed="false" data-reveal style="--delay:120ms">
+        <span class="echo__dot" aria-hidden="true"></span>
+        <span>Tu mente organiza reuniones de emergencia a las tres de la mañana.</span>
+      </button>
+      <button class="echo" type="button" aria-pressed="false" data-reveal style="--delay:180ms">
+        <span class="echo__dot" aria-hidden="true"></span>
+        <span>Cambian las personas, pero la historia parece conservar el mismo guionista.</span>
+      </button>
+      <button class="echo" type="button" aria-pressed="false" data-reveal style="--delay:240ms">
+        <span class="echo__dot" aria-hidden="true"></span>
+        <span>Dices «no me importa» y luego das una conferencia de cuarenta minutos sobre el tema.</span>
+      </button>
+      <button class="echo" type="button" aria-pressed="false" data-reveal style="--delay:300ms">
+        <span class="echo__dot" aria-hidden="true"></span>
+        <span>Intentas tener todo bajo control, incluyendo cosas que todavía no han sucedido.</span>
+      </button>
+    </div>
+
+    <div class="echo__meter" data-reveal>
+      <span class="echo__count" id="echo-count" aria-hidden="true">0</span>
+      <p class="echo__msg" id="echo-msg" role="status">
+        No significa que estés mal. Significa que alguna parte de tu historia necesita ser
+        comprendida, atendida y tratada con más amor.
+      </p>
+      <a class="btn btn--taupe" data-wa data-wa-msg="reconoces">Hablemos de esto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== Misión, propósito y visión ====================== -->
+<section class="section section--linen" id="mision">
+  <img class="watermark" src="assets/img/isotipo.png" alt="" aria-hidden="true" width="512" height="512">
+  <div class="wrap">
+    <div class="split">
+      <div class="split__body">
+        <p class="eyebrow" data-reveal>Mi misión</p>
+        <h2 data-reveal style="--delay:60ms">Comprender tu historia para poder <span class="accent">transformarla</span></h2>
+        <p data-reveal style="--delay:120ms">
+          Acompañarte a comprender tu historia, transformar patrones emocionales y fortalecer
+          la relación contigo mismo.
+        </p>
+        <p data-reveal style="--delay:170ms">
+          Trabajo desde una mirada integral que incluye pensamientos, emociones, cuerpo,
+          vínculos y espiritualidad.
+        </p>
+        <p class="wink" data-reveal style="--delay:220ms">
+          No vengo a decirte cómo debes vivir. Te acompaño a escucharte con mayor claridad,
+          mientras el miedo aprende que ya no puede quedarse con el micrófono.
+        </p>
+      </div>
+
+      <div class="split__media" data-reveal style="--delay:140ms">
+        <figure class="figure" style="aspect-ratio: 4/3">
+          <picture>
+            <source srcset="assets/img/volver-a-ti.webp" type="image/webp">
+            <img src="assets/img/volver-a-ti.jpg" alt="Persona sentada frente a un lago en calma al amanecer" loading="lazy" width="1400" height="933">
+          </picture>
+          <figcaption>Volver a ti no es llegar a otro lugar. Es dejar de irte del tuyo.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="duo">
+      <div class="duo__card" data-reveal>
+        <p class="eyebrow">Mi propósito</p>
+        <h3>Ayudarte a volver a ti</h3>
+        <p>Volver a ti es reconocer tu valor, escuchar tus emociones y dejar de vivir únicamente
+           desde las heridas del pasado o las expectativas de los demás.</p>
+        <p class="wink">No se trata de convertirte en una persona perfecta. Las redes sociales
+           ya tienen suficientes voluntarios para ese puesto.</p>
+        <p>Se trata de vivir con mayor autenticidad, serenidad y libertad interior.</p>
+      </div>
+
+      <div class="duo__card" data-reveal style="--delay:100ms">
+        <p class="eyebrow">Visión</p>
+        <h3>Una comunidad que vive con más conciencia</h3>
+        <p>Ser una marca referente en crecimiento humano y transformación emocional para el
+           mundo de habla hispana.</p>
+        <p>Crear una comunidad de personas capaces de comprender su historia, cuidar sus
+           vínculos y vivir con mayor conciencia, responsabilidad y compasión.</p>
+        <p class="wink">No buscamos construir vidas sin problemas. Buscamos personas con mejores
+           herramientas para no convertir cada dificultad en una mudanza emocional permanente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== Acompañamiento ====================== -->
+<section class="section" id="acompanamiento">
+  <div class="wrap">
+    <div class="section__head section__head--center">
+      <p class="eyebrow" data-reveal>Formas de trabajo</p>
+      <h2 data-reveal style="--delay:60ms">¿Cómo puedo <span class="accent">acompañarte</span>?</h2>
+      <p class="lead" data-reveal style="--delay:120ms">
+        Cuatro maneras de entrar al mismo proceso. La que necesites hoy es la correcta.
+      </p>
+    </div>
+
+    <div class="services">
+      <article class="service" data-reveal>
+        <span class="service__num" aria-hidden="true">01</span>
+        <h3>Encuentros individuales</h3>
+        <p>Un espacio confidencial para comprender lo que estás viviendo y encontrar nuevas
+           maneras de responder.</p>
+        <p class="wink">Aquí puedes hablar de eso que llevas tiempo evitando y que, curiosamente,
+           sigue acompañándote a todas partes.</p>
+      </article>
+
+      <article class="service" data-reveal style="--delay:80ms">
+        <span class="service__num" aria-hidden="true">02</span>
+        <h3>Experiencias vivenciales</h3>
+        <p>Encuentros para pasar de entender el cambio intelectualmente a experimentarlo de verdad.</p>
+        <p class="wink">Porque saber lo que debes hacer es importante. Conseguir hacerlo sin
+           discutir contigo durante tres semanas es otra historia.</p>
+      </article>
+
+      <article class="service" data-reveal style="--delay:160ms">
+        <span class="service__num" aria-hidden="true">03</span>
+        <h3>Relaciones y familia</h3>
+        <p>Procesos para comprender patrones, mejorar la comunicación y construir vínculos
+           más saludables.</p>
+        <p class="wink">Amar a la familia no significa aceptar cada conflicto como una
+           tradición hereditaria.</p>
+      </article>
+
+      <article class="service" data-reveal style="--delay:240ms">
+        <span class="service__num" aria-hidden="true">04</span>
+        <h3>Equipos y organizaciones</h3>
+        <p>Experiencias para fortalecer la comunicación, el liderazgo humano y la colaboración.</p>
+        <p class="wink">Porque trabajar en el mismo lugar no convierte automáticamente a un
+           grupo de personas en un equipo. El ascensor tampoco hace milagros.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== Quién es Alberto ====================== -->
+<section class="section section--linen" id="alberto">
+  <div class="wrap">
+    <div class="split split--top">
+      <div class="bio__media" data-reveal>
+        <figure class="figure">
+          <picture>
+            <source srcset="assets/img/alberto-seminario.webp" type="image/webp">
+            <img src="assets/img/alberto-seminario.jpg" alt="Alberto Chirinos facilitando un seminario ante un grupo de participantes" loading="lazy" width="1400" height="824">
+          </picture>
+          <figcaption>Seminario presencial. Facilitación en grupo.</figcaption>
+        </figure>
+        <figure class="figure">
+          <picture>
+            <source srcset="assets/img/encuentro-abrazo.webp" type="image/webp">
+            <img src="assets/img/encuentro-abrazo.jpg" alt="Participantes abrazándose durante una experiencia vivencial" loading="lazy" width="1086" height="1448">
+          </picture>
+        </figure>
+        <figure class="figure">
+          <picture>
+            <source srcset="assets/img/grupo-taller.webp" type="image/webp">
+            <img src="assets/img/grupo-taller.jpg" alt="Grupo de participantes al cierre de un taller" loading="lazy" width="1400" height="1015">
+          </picture>
+        </figure>
+      </div>
+
+      <div class="split__body">
+        <p class="eyebrow" data-reveal>Quién soy</p>
+        <h2 data-reveal style="--delay:60ms">¿Quién es <span class="accent">Alberto Chirinos</span>?</h2>
+        <p data-reveal style="--delay:120ms">
+          Soy facilitador de procesos de transformación emocional y crecimiento humano.
+          Desde 1995 he acompañado a personas y grupos mediante seminarios, encuentros
+          individuales, programas de formación y experiencias vivenciales desarrolladas
+          en Venezuela y Colombia.
+        </p>
+        <p data-reveal style="--delay:170ms">
+          Mi trabajo integra conocimientos sobre emociones, autoestima, comunicación, cuerpo,
+          relaciones familiares, dinámicas sistémicas y espiritualidad. A lo largo de esta
+          trayectoria he facilitado cientos de encuentros y compartido contenidos de bienestar
+          y crecimiento personal a través de distintos medios de comunicación.
+        </p>
+
+        <div class="stats" data-reveal style="--delay:220ms">
+          <div class="stat">
+            <span class="stat__num" data-count="1995" data-plain>1995</span>
+            <span class="stat__label">Año de inicio</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num" data-count="30" data-suffix="+">0+</span>
+            <span class="stat__label">Años acompañando</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num" data-count="2">0</span>
+            <span class="stat__label">Países</span>
+          </div>
+        </div>
+
+        <p data-reveal style="--delay:270ms">
+          Pero más allá de los años y las cifras, mi mayor aprendizaje ha sido este:
+        </p>
+        <p class="pullquote" data-reveal style="--delay:310ms">
+          Cada persona posee recursos internos que pueden quedar escondidos debajo del miedo,
+          la culpa, el dolor o la costumbre de decir «estoy bien» demasiado rápido.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== Video ====================== -->
+<!-- Vertical (720×1280), tal como llegó. El marco lo trata como un reel:
+     alto fijo y ancho proporcional, sin recortarlo. Para cambiarlo, sustituye
+     assets/video/alberto-mensaje.mp4 (o el src de aquí abajo). -->
+<section class="section" id="video">
+  <div class="wrap">
+    <div class="videoblock">
+      <!-- Arranca solo al llegar a la sección. Los navegadores solo permiten
+           el arranque automático si va en silencio, de ahí el botón de sonido. -->
+      <div class="videoblock__media" data-reveal style="--delay:160ms">
+        <video id="video-alberto" controls playsinline muted preload="metadata"
+               width="720" height="1280"
+               aria-label="Mensaje en video de Alberto Chirinos">
+          <source src="assets/video/alberto-mensaje.mp4" type="video/mp4">
+          Tu navegador no puede reproducir este video.
+        </video>
+        <button class="videoblock__sonido" id="video-sonido" type="button" aria-pressed="false">
+          <svg class="ico-mudo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zm15.5 3-2.7-2.7 1.1-1.1 2.7 2.7 2.7-2.7 1.1 1.1-2.7 2.7 2.7 2.7-1.1 1.1-2.7-2.7-2.7 2.7-1.1-1.1z"/></svg>
+          <svg class="ico-sonando" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zm12.5 3a4 4 0 0 0-2.5-3.7v7.4a4 4 0 0 0 2.5-3.7zM14 3.2v2.1a6.8 6.8 0 0 1 0 13.4v2.1a8.9 8.9 0 0 0 0-17.6z"/></svg>
+          <span class="videoblock__sonido-txt">Activar sonido</span>
+        </button>
+      </div>
+      <div class="videoblock__txt">
+        <p class="eyebrow" data-reveal>En sus palabras</p>
+        <h2 data-reveal style="--delay:60ms">Escúchalo <span class="accent">directamente</span></h2>
+        <p class="lead" data-reveal style="--delay:120ms">
+          A veces un texto no alcanza. Este es Alberto contándolo con sus propias
+          palabras, sin guion y sin prisa.
+        </p>
+        <p class="wink" data-reveal style="--delay:180ms">
+          Cuatro minutos. Ponle sonido.
+        </p>
+        <div data-reveal style="--delay:240ms">
+          <a class="btn btn--outline" href="#comenzamos">Quiero hablar con él</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================== Historia / línea de tiempo ====================== -->
+<section class="section section--ink" id="historia">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow" data-reveal>Trayectoria</p>
+      <h2 data-reveal style="--delay:60ms">Una historia que comenzó en <span class="accent">1995</span></h2>
+      <p class="lead" data-reveal style="--delay:120ms">
+        Este proyecto comenzó con una pregunta: ¿qué necesita una persona para reconciliarse
+        consigo misma y recuperar la alegría de vivir? La respuesta fue construyéndose mediante
+        el estudio, la experiencia y miles de encuentros humanos.
+      </p>
+    </div>
+
+    <div class="timeline-wrap">
+      <div class="timeline" id="timeline" tabindex="0" role="region"
+           aria-label="Línea de tiempo de la trayectoria, desplazable horizontalmente">
+        <article class="milestone">
+          <span class="milestone__when">1995 · El comienzo</span>
+          <h3>Nace la propuesta</h3>
+          <p>Nace una propuesta dedicada al crecimiento humano, la autoestima y la
+             transformación emocional.</p>
+        </article>
+        <article class="milestone">
+          <span class="milestone__when">Primeros años</span>
+          <h3>La experiencia vivencial</h3>
+          <p>Los encuentros se convierten en espacios para experimentar el cambio, no
+             solamente para hablar de él.</p>
+        </article>
+        <article class="milestone">
+          <span class="milestone__when">Expansión</span>
+          <h3>Nuevas ciudades y comunidades</h3>
+          <p>Los seminarios llegan a diferentes ciudades de Venezuela y Colombia.</p>
+        </article>
+        <article class="milestone">
+          <span class="milestone__when">Medios de comunicación</span>
+          <h3>El mensaje llega más lejos</h3>
+          <p>La televisión y los contenidos audiovisuales permiten compartir herramientas
+             con nuevos públicos.</p>
+        </article>
+        <article class="milestone">
+          <span class="milestone__when">Profundización</span>
+          <h3>Una mirada más integral</h3>
+          <p>El trabajo incorpora dimensiones emocionales, corporales, familiares,
+             relacionales y espirituales.</p>
+        </article>
+        <article class="milestone">
+          <span class="milestone__when">Hoy</span>
+          <h3>La marca Alberto Chirinos</h3>
+          <p>Una nueva etapa con lenguaje contemporáneo, experiencias presenciales,
+             contenidos digitales y una comunidad orientada a vivir con mayor conciencia.</p>
+        </article>
+      </div>
+
+      <button class="timeline__btn timeline__btn--prev" type="button" data-rail="prev"
+              aria-controls="timeline" aria-label="Ver hitos anteriores">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <button class="timeline__btn timeline__btn--next" type="button" data-rail="next"
+              aria-controls="timeline" aria-label="Ver hitos siguientes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <p class="wink" style="margin-top: var(--space-xl); max-width: 46ch; font-size: var(--step-1)" data-reveal>
+      Evolucionar no significa dejar de ser quien eras. Significa reconocer cuándo tu vida
+      necesita una actualización y dejar de presionar «recordármelo más tarde».
+    </p>
+  </div>
+</section>
+
+<!-- ====================== Valores ====================== -->
+<section class="section" id="valores">
+  <div class="wrap wrap--tight">
+    <div class="section__head section__head--center">
+      <p class="eyebrow" data-reveal>Lo que sostiene el trabajo</p>
+      <h2 data-reveal style="--delay:60ms">Valores</h2>
+    </div>
+
+    <div class="values" id="values" data-reveal>
+      <div class="value">
+        <button class="value__btn" type="button" aria-expanded="true" aria-controls="v1">
+          <span class="value__name">Humanidad</span>
+          <span class="value__sign" aria-hidden="true"></span>
+        </button>
+        <div class="value__panel" id="v1" data-open="true"><div>
+          <p>No eres un problema que debe ser reparado. Eres una persona que merece ser comprendida.</p>
+        </div></div>
+      </div>
+
+      <div class="value">
+        <button class="value__btn" type="button" aria-expanded="false" aria-controls="v2">
+          <span class="value__name">Amor consciente</span>
+          <span class="value__sign" aria-hidden="true"></span>
+        </button>
+        <div class="value__panel" id="v2" data-open="false"><div>
+          <p>Amar también significa poner límites, decir la verdad y dejar de desaparecer de tu
+             propia vida para complacer a todos.</p>
+        </div></div>
+      </div>
+
+      <div class="value">
+        <button class="value__btn" type="button" aria-expanded="false" aria-controls="v3">
+          <span class="value__name">Respeto</span>
+          <span class="value__sign" aria-hidden="true"></span>
+        </button>
+        <div class="value__panel" id="v3" data-open="false"><div>
+          <p>Cada proceso tiene su ritmo. Comparar tu camino con el de otra persona es como
+             enfadarte con una planta porque el árbol vecino creció primero.</p>
+        </div></div>
+      </div>
+
+      <div class="value">
+        <button class="value__btn" type="button" aria-expanded="false" aria-controls="v4">
+          <span class="value__name">Responsabilidad</span>
+          <span class="value__sign" aria-hidden="true"></span>
+        </button>
+        <div class="value__panel" id="v4" data-open="false"><div>
+          <p>Tu historia explica muchas cosas, pero no tiene que decidirlo todo.</p>
+        </div></div>
+      </div>
+
+      <div class="value">
+        <button class="value__btn" type="button" aria-expanded="false" aria-controls="v5">
+          <span class="value__name">Profundidad</span>
+          <span class="value__sign" aria-hidden="true"></span>
+        </button>
+        <div class="value__panel" id="v5" data-open="false"><div>
+          <p>No buscamos esconder los síntomas debajo de una frase positiva. Primero escuchamos
+             lo que vienen a decirnos.</p>
+        </div></div>
+      </div>
+
+      <div class="value">
+        <button class="value__btn" type="button" aria-expanded="false" aria-controls="v6">
+          <span class="value__name">Alegría</span>
+          <span class="value__sign" aria-hidden="true"></span>
+        </button>
+        <div class="value__panel" id="v6" data-open="false"><div>
+          <p>La transformación puede ser profunda sin sentirse como un documental triste de
+             cuatro horas.</p>
+        </div></div>
+      </div>
+
+      <div class="value">
+        <button class="value__btn" type="button" aria-expanded="false" aria-controls="v7">
+          <span class="value__name">Esperanza</span>
+          <span class="value__sign" aria-hidden="true"></span>
+        </button>
+        <div class="value__panel" id="v7" data-open="false"><div>
+          <p>No siempre podemos cambiar lo que ocurrió, pero sí podemos transformar la relación
+             que tenemos con ello.</p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== Verdades con una sonrisa ====================== -->
+<section class="section section--linen" id="verdades">
+  <div class="wrap">
+    <div class="section__head section__head--center">
+      <p class="eyebrow" data-reveal>Para llevar</p>
+      <h2 data-reveal style="--delay:60ms">Algunas verdades con una <span class="accent">sonrisa</span></h2>
+    </div>
+  </div>
+
+  <div class="marquee__row" aria-hidden="true">
+    <div class="marquee" style="--duration:72s" data-marquee>
+      <p class="truth">Poner límites también es amor, aunque algunas personas lo confundan con una falla del sistema.</p>
+      <p class="truth">Soltar no es decir «no me importa». Es recordarlo sin volver a vivirlo.</p>
+      <p class="truth">Tu cuerpo no está exagerando; está participando en la conversación.</p>
+      <p class="truth">No todo lo que heredaste tiene que convertirse en tradición.</p>
+      <p class="truth">Si cambian los personajes, pero se repite la historia, quizás necesitas hablar con el guionista.</p>
+    </div>
+  </div>
+
+  <div class="marquee__row" aria-hidden="true">
+    <div class="marquee marquee--reverse" style="--duration:64s" data-marquee>
+      <p class="truth">Antes de buscar tu mejor versión, trata con cariño a la versión que hoy está haciendo lo posible.</p>
+      <p class="truth">Pensar demasiado no siempre resuelve el problema. A veces solo le coloca música de suspenso.</p>
+      <p class="truth">Puedes amar a tu familia sin descargar todas sus aplicaciones emocionales.</p>
+      <p class="truth">La paz interior no elimina los problemas; evita que les prepares una habitación permanente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== Cierre / CTA ====================== -->
+<section class="section" id="comenzamos">
+  <div class="wrap wrap--tight">
+    <div class="closing">
+      <p class="eyebrow" data-reveal>El siguiente paso</p>
+      <h2 data-reveal style="--delay:60ms">¿<span class="accent">Comenzamos</span>?</h2>
+      <p class="lead" data-reveal style="--delay:120ms">
+        No necesitas llegar con todas las respuestas. Solo necesitas la disposición de mirarte
+        con honestidad, comprenderte con amor y dar el siguiente paso.
+      </p>
+      <p class="pullquote pullquote--center" data-reveal style="--delay:180ms">
+        Tu historia merece ser comprendida. Tu presente todavía puede ser transformado.
+      </p>
+
+      <a class="btn" data-wa data-wa-msg="primer-paso" data-reveal style="--delay:240ms">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.3-.7.3-1.3.2-1.5 0-.1-.2-.2-.5-.3z"/><path d="M12 2A10 10 0 0 0 3.5 17.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.6z"/></svg>
+        Quiero dar el primer paso
+      </a>
+
+      <p class="closing__alt" data-reveal style="--delay:300ms">
+        ¿Prefieres escribir con calma? También puedes hacerlo por correo:
+        <a data-mail data-mail-asunto="primer-paso" href="mailto:albertodariochirinos@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-correo"/></svg>
+          <span data-mail-visible>albertodariochirinos@gmail.com</span>
+        </a>
+      </p>
+
+      <div class="closing__redes" data-reveal style="--delay:360ms">
+        <p class="eyebrow">Sígueme</p>
+        <div class="redes" data-redes></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== Formulario ====================== -->
+<!-- La página es estática: no hay servidor que reciba nada. Al enviar, el
+     formulario arma el mensaje y abre WhatsApp con todo escrito; así el
+     botón no deja a nadie plantado. Ver assets/js/formulario.js. -->
+<section class="section section--linen" id="contacto">
+  <div class="wrap wrap--tight">
+    <div class="section__head section__head--center">
+      <p class="eyebrow" data-reveal>Escríbeme</p>
+      <h2 data-reveal style="--delay:60ms">Cuéntame qué te <span class="accent">trae por aquí</span></h2>
+      <p class="lead" data-reveal style="--delay:120ms">
+        No hace falta que lo tengas ordenado ni claro. Con unas líneas basta
+        para empezar a conversar.
+      </p>
+    </div>
+
+    <form class="form" id="form-contacto" novalidate data-reveal style="--delay:180ms">
+      <div class="form__row">
+        <p class="field">
+          <label class="field__label" for="f-nombre">Tu nombre</label>
+          <input class="field__input" id="f-nombre" name="nombre" type="text"
+                 autocomplete="name" required placeholder="Cómo te llamas">
+          <span class="field__error" data-error-for="f-nombre"></span>
+        </p>
+
+        <p class="field">
+          <label class="field__label" for="f-contacto">Teléfono o correo</label>
+          <input class="field__input" id="f-contacto" name="contacto" type="text"
+                 autocomplete="tel" required placeholder="Para poder responderte">
+          <span class="field__error" data-error-for="f-contacto"></span>
+        </p>
+      </div>
+
+      <p class="field">
+        <label class="field__label" for="f-tema">Qué te interesa</label>
+        <select class="field__input" id="f-tema" name="tema">
+          <option>Acompañamiento individual</option>
+          <option>Acompañamiento de pareja o familia</option>
+          <option>Experiencia vivencial o taller</option>
+          <option>Trabajo con equipos y organizaciones</option>
+          <option>Todavía no lo sé</option>
+        </select>
+      </p>
+
+      <p class="field">
+        <label class="field__label" for="f-mensaje">Tu mensaje</label>
+        <textarea class="field__input field__input--area" id="f-mensaje" name="mensaje"
+                  rows="5" required
+                  placeholder="Lo que sientas que necesito saber para acompañarte mejor."></textarea>
+        <span class="field__error" data-error-for="f-mensaje"></span>
+      </p>
+
+      <div class="form__pie">
+        <button class="btn" type="submit">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.3-.7.3-1.3.2-1.5 0-.1-.2-.2-.5-.3z"/><path d="M12 2A10 10 0 0 0 3.5 17.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.6z"/></svg>
+          Enviar por WhatsApp
+        </button>
+        <p class="form__nota">
+          Se abre WhatsApp con tu mensaje ya escrito. Tú decides si lo envías.
+        </p>
+      </div>
+
+      <p class="form__ok" id="form-ok" role="status" hidden></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================== Pie ====================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <img class="footer__logo" src="assets/img/logo-chirinos.png"
+             alt="Chirinos — Sanación más allá de lo visible" width="1400" height="444" loading="lazy">
+        <p style="max-width: 34ch">
+          Acompañamiento en crecimiento humano y transformación emocional desde 1995.
+        </p>
+
+        <p class="footer__title footer__title--gap">Correo</p>
+        <a class="footer__mail" data-mail href="mailto:albertodariochirinos@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-correo"/></svg>
+          <span data-mail-visible>albertodariochirinos@gmail.com</span>
+        </a>
+      </div>
+
+      <div>
+        <p class="footer__title">Secciones</p>
+        <ul class="footer__list">
+          <li><a href="#acompanamiento">Cómo acompaño</a></li>
+          <li><a href="#alberto">Quién es Alberto</a></li>
+          <li><a href="#historia">Trayectoria</a></li>
+          <li><a href="#valores">Valores</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__title">WhatsApp</p>
+        <ul class="tel-list">
+          <li>
+            <a class="tel" data-wa data-wa-num="0" data-wa-msg="hola">
+              <svg class="tel__flag" viewBox="0 0 30 20" aria-hidden="true"><use href="#bandera-ve"/></svg>
+              <span class="tel__num" data-wa-visible="0">+58 424 711 9592</span>
+              <span class="tel__pais">Venezuela</span>
+            </a>
+          </li>
+          <li>
+            <a class="tel" data-wa data-wa-num="1" data-wa-msg="hola">
+              <svg class="tel__flag" viewBox="0 0 30 20" aria-hidden="true"><use href="#bandera-co"/></svg>
+              <span class="tel__num" data-wa-visible="1">+57 302 834 1685</span>
+              <span class="tel__pais">Colombia</span>
+            </a>
+          </li>
+          <li>
+            <a class="tel" data-wa data-wa-num="2" data-wa-msg="hola">
+              <svg class="tel__flag" viewBox="0 0 30 20" aria-hidden="true"><use href="#bandera-co"/></svg>
+              <span class="tel__num" data-wa-visible="2">+57 302 245 8002</span>
+              <span class="tel__pais">Colombia</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__title">Dónde estamos</p>
+        <ul class="footer__list">
+          <li>Pirineos, Calle Bello Monte N.º 1-16,<br>casa Divino Niño</li>
+          <li>San Cristóbal · Táchira · Venezuela</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__title">Redes</p>
+        <div class="redes redes--lista" data-redes data-redes-texto></div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>Integración al Ser C.A. · RIF J-29622532-0 · Alberto Darío Chirinos Aldana, Presidente</span>
+      <span>&copy; <span id="year">2026</span> Alberto Chirinos. Todos los derechos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Botón flotante de WhatsApp: despliega los números disponibles -->
+<div class="fab" id="fab">
+  <div class="fab__panel" id="fab-panel" hidden>
+    <p class="fab__title">Escríbenos por WhatsApp</p>
+    <a class="fab__opt" data-wa data-wa-num="0" data-wa-msg="flotante">
+      <svg class="tel__flag" viewBox="0 0 30 20" aria-hidden="true"><use href="#bandera-ve"/></svg>
+      <span class="fab__opt-txt">
+        <span class="tel__num" data-wa-visible="0">+58 424 711 9592</span>
+        <span class="tel__pais">Venezuela</span>
+      </span>
+    </a>
+    <a class="fab__opt" data-wa data-wa-num="1" data-wa-msg="flotante">
+      <svg class="tel__flag" viewBox="0 0 30 20" aria-hidden="true"><use href="#bandera-co"/></svg>
+      <span class="fab__opt-txt">
+        <span class="tel__num" data-wa-visible="1">+57 302 834 1685</span>
+        <span class="tel__pais">Colombia</span>
+      </span>
+    </a>
+    <a class="fab__opt" data-wa data-wa-num="2" data-wa-msg="flotante">
+      <svg class="tel__flag" viewBox="0 0 30 20" aria-hidden="true"><use href="#bandera-co"/></svg>
+      <span class="fab__opt-txt">
+        <span class="tel__num" data-wa-visible="2">+57 302 245 8002</span>
+        <span class="tel__pais">Colombia</span>
+      </span>
+    </a>
+  </div>
+
+  <button class="fab__btn" id="fab-btn" type="button"
+          aria-expanded="false" aria-controls="fab-panel">
+    <span class="fab__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.3-.7.3-1.3.2-1.5 0-.1-.2-.2-.5-.3z"/><path d="M12 2A10 10 0 0 0 3.5 17.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.6z"/></svg>
+    </span>
+    <span class="fab__label">Escríbeme</span>
+  </button>
+</div>
+
+<script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
