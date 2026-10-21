@@ -188,7 +188,8 @@ main.waiting{visibility:hidden}
 .eq i:nth-child(2){animation-delay:-.2s!important}.eq i:nth-child(3){animation-delay:-.35s!important}.eq i:nth-child(4){animation-delay:-.1s!important}
 @keyframes eq{from{height:20%}to{height:100%}}
 .music{display:grid;gap:14px}
-.tv{background:var(--night);border-radius:18px;padding:10px 10px 12px;rotate:-1deg;box-shadow:0 0 0 3px #3a2a52,0 14px 26px rgba(0,0,0,.45)}
+.tv-dock{height:0}
+.tv{position:absolute;z-index:2;box-sizing:border-box;background:var(--night);border-radius:18px;padding:10px 10px 12px;rotate:-1deg;box-shadow:0 0 0 3px #3a2a52,0 14px 26px rgba(0,0,0,.45)}
 .tv-label{font-family:var(--block);font-size:12px;letter-spacing:.06em;color:var(--cheese);margin:0 4px 8px}
 .tv-screen{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#000;max-width:100%}
 .tv-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -239,6 +240,14 @@ main.revealed > *:nth-child(6){animation-delay:.42s}main.revealed > *:nth-child(
 .ticket{background:#fffaf0;color:#222;font-family:var(--type);font-size:clamp(10px,3vw,12.5px);line-height:1.45;text-align:left;padding:10px 12px;width:90%;rotate:3deg;box-shadow:0 2px 0 rgba(0,0,0,.15)}
 .ticket .row{display:flex;justify-content:space-between;gap:8px}
 .tape{position:absolute;width:56px;height:18px;background:color-mix(in srgb,var(--cheese) 60%,transparent);top:20%;right:12%;rotate:28deg}
+.tv-slot{display:none;width:min(86vw,330px)}
+.intro.has-tv{gap:16px;align-content:center}
+.intro.has-tv .scene{width:min(50vw,200px)}
+.intro.has-tv .tv-slot{display:block}
+.intro.has-tv .intro-hint{display:none}
+.tv.on-box{position:fixed;z-index:25;rotate:0deg;margin:0;box-shadow:0 0 0 3px var(--pink),0 0 34px color-mix(in srgb,var(--pink) 55%,transparent)}
+.tv.on-box .tv-label{font-size:15px;text-align:center;margin:2px 4px 10px}
+.tv.on-box .tv-ask{display:block}.tv.on-box .tv-now{display:none}
 .intro-hint{margin:0;font-family:var(--hand);font-size:22px;text-align:center;color:#fff;animation:bob2 1.6s ease-in-out infinite}
 .intro-hint span{display:block;font-family:var(--type);font-size:14px;color:#c9c4d4;margin-top:2px}
 @keyframes bob2{50%{translate:0 -5px}}
@@ -295,10 +304,19 @@ main.revealed > *:nth-child(6){animation-delay:.42s}main.revealed > *:nth-child(
       </div>
     </div>
   </div>
-  <p class="intro-hint">Toca la caja para abrirla<span>Sube el volumen: viene con música</span></p>
+  <div class="tv-slot" id="tv-slot" aria-hidden="true"></div>
+  <p class="intro-hint" id="intro-hint">Toca la caja para abrirla<span>Sube el volumen: viene con música</span></p>
 </div>
 <div class="flash" id="flash"></div>
 <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <div class="tv" id="tv" hidden>
+    <div class="tv-label"><span class="tv-ask" id="tv-ask">Dale play para que empiece la rumba</span><span class="tv-now">Ahora suena · Don Omar</span></div>
+    <div class="tv-screen"><div id="yt"></div></div>
+    <p class="tv-hint" id="tv-hint" hidden>¿No suena Don Omar? Toca el video.</p>
+    <button class="tv-skip" id="tv-skip" type="button">Seguir sin música</button>
+  </div>
+  <div class="tv-backdrop" id="tv-backdrop" hidden></div>
 
 <main id="card" class="waiting">
   <div class="poster-shadow">
@@ -371,13 +389,7 @@ main.revealed > *:nth-child(6){animation-delay:.42s}main.revealed > *:nth-child(
   </section>
 
   <section aria-label="Música" class="music">
-    <div class="tv" id="tv" hidden>
-      <div class="tv-label"><span class="tv-ask">Dale play para que empiece la rumba</span><span class="tv-now">Ahora suena · Don Omar</span></div>
-      <div class="tv-screen"><div id="yt"></div></div>
-      <p class="tv-hint" id="tv-hint" hidden>¿No suena Don Omar? Toca el video.</p>
-      <button class="tv-skip" id="tv-skip" type="button">Seguir sin música</button>
-    </div>
-    <div class="tv-backdrop" id="tv-backdrop" hidden></div>
+    <div class="tv-dock" id="tv-dock" aria-hidden="true"></div>
     <button class="btn btn-dj" id="dj" type="button" aria-pressed="false">
       <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       <span id="dj-label">Dale play a la fiesta</span>
@@ -568,6 +580,7 @@ function openBox(){
   later(1900, () => {
     $('flash').classList.add('go');
     card.classList.remove('waiting'); card.classList.add('revealed');
+    if ($('tv').classList.contains('on-box')) tvOnBox(false);
     intro.classList.add('gone');
     burst(innerWidth / 2, innerHeight * .35, 140);
     setTimeout(() => { burst(innerWidth * .15, innerHeight * .6, 50); burst(innerWidth * .85, innerHeight * .6, 50); }, 250);
@@ -673,7 +686,7 @@ function ytHint(on){ $('tv-hint').hidden = !on; }
 /* Phones (iPhone above all) only let YouTube play with sound when the guest taps the video itself.
    If the song hasn't started, the video comes forward with a big "dale play" so one tap starts it. */
 function askForPlay(on){
-  $('tv').classList.toggle('ask', on); $('tv-backdrop').hidden = !on;
+  $('tv').classList.toggle('ask', on); $('tv-backdrop').hidden = !on; placeTv();
 }
 function onYTPlaying(){
   clearTimeout(ytWatch); synthStop(); ytHint(false); askForPlay(false);
@@ -692,16 +705,44 @@ function playYT(){
 }
 $('tv-skip').addEventListener('click', () => { askForPlay(false); ytWanted = false; });
 $('tv-backdrop').addEventListener('click', () => { askForPlay(false); ytWanted = false; });
+/* On the opening screen the video sits under the pizza box: on iPhone, tapping YouTube's own play
+   button is the one tap that can start the song with sound, and it also opens the box. */
+function placeTv(){
+  const tv = $('tv');
+  if (tv.hidden){ $('tv-dock').style.height = '0px'; return; }
+  if (tv.classList.contains('ask')){ tv.style.left = tv.style.top = tv.style.width = ''; return; }
+  if (tv.classList.contains('on-box')){
+    const slot = $('tv-slot'); let r = slot.getBoundingClientRect();
+    tv.style.width = r.width + 'px'; slot.style.height = tv.offsetHeight + 'px';
+    r = slot.getBoundingClientRect(); tv.style.left = r.left + 'px'; tv.style.top = r.top + 'px';
+    return;
+  }
+  const dock = $('tv-dock'); let r = dock.getBoundingClientRect();
+  tv.style.width = r.width + 'px'; dock.style.height = tv.offsetHeight + 'px';
+  r = dock.getBoundingClientRect();
+  tv.style.left = (r.left + scrollX) + 'px'; tv.style.top = (r.top + scrollY) + 'px';
+}
+function tvOnBox(on){
+  $('tv').classList.toggle('on-box', on);
+  intro.classList.toggle('has-tv', on);
+  $('tv-ask').textContent = on ? 'Dale play para abrir tu invitación' : 'Dale play para que empiece la rumba';
+  placeTv(); requestAnimationFrame(placeTv); setTimeout(placeTv, 300);
+}
+if (window.ResizeObserver) new ResizeObserver(() => placeTv()).observe(document.body);
+if (document.fonts) document.fonts.ready.then(placeTv);
+addEventListener('resize', placeTv);
 function loadYouTube(){
   window.onYouTubeIframeAPIReady = () => {
     $('tv').hidden = false;   // visible before the player is built, so it gets a real size
+    if (!opened) tvOnBox(true); else placeTv();
     yt = new YT.Player('yt', {
       videoId: SONG,
       playerVars: { playsinline: 1, rel: 0, loop: 1, playlist: SONG },
       events: {
         onReady: () => { ytReady = true; if (ytWanted) playYT(); },
-        onError: () => { ytFailed = true; $('tv').hidden = true; clearTimeout(ytWatch); if (ytWanted && !playing) synthStart(); },
+        onError: () => { ytFailed = true; $('tv').hidden = true; tvOnBox(false); clearTimeout(ytWatch); if (ytWanted && !playing) synthStart(); },
         onStateChange: e => {
+          if (!opened && (e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING)){ ytWanted = true; openBox(); }
           if (e.data === YT.PlayerState.PLAYING) onYTPlaying();
           else if (e.data === YT.PlayerState.PAUSED && usingYT){
             clearInterval(ytPulse); playing = false; dancing = false; setBtn(false);
