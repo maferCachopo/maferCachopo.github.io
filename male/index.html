@@ -190,8 +190,9 @@ main.waiting{visibility:hidden}
 .music{display:grid;gap:14px}
 .tv{background:var(--night);border-radius:18px;padding:10px 10px 12px;rotate:-1deg;box-shadow:0 0 0 3px #3a2a52,0 14px 26px rgba(0,0,0,.45)}
 .tv-label{font-family:var(--block);font-size:12px;letter-spacing:.06em;color:var(--cheese);margin:0 4px 8px}
-.tv-screen{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;max-width:100%}
+.tv-screen{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#000;max-width:100%}
 .tv-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.tv-hint{margin:10px 4px 0;font-family:var(--hand);font-size:16px;color:var(--cheese)}
 .dj-note{font-family:var(--type);font-size:13px;color:#e6e2ee;text-align:center;margin:0;text-shadow:0 1px 3px #000}
 
 .closing{display:grid;justify-items:center;gap:10px;text-align:center}
@@ -363,6 +364,7 @@ main.revealed > *:nth-child(6){animation-delay:.42s}main.revealed > *:nth-child(
     <div class="tv" id="tv" hidden>
       <div class="tv-label">Ahora suena · Don Omar</div>
       <div class="tv-screen"><div id="yt"></div></div>
+      <p class="tv-hint" id="tv-hint" hidden>¿No suena Don Omar? Toca el video.</p>
     </div>
     <button class="btn btn-dj" id="dj" type="button" aria-pressed="false">
       <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -654,25 +656,34 @@ function synthStart(){
   playing = true; dancing = true; usingYT = false; setBtn(true);
 }
 function synthStop(){ clearInterval(sched); }
-function ytFallback(){
-  clearTimeout(ytWatch); clearInterval(ytPulse);
-  if (yt && yt.stopVideo) try { yt.stopVideo(); } catch (err) {}
-  usingYT = false; synthStart();
+let ytWanted = false;   // the guest asked for music; play Don Omar as soon as YouTube is able
+function ytHint(on){ $('tv-hint').hidden = !on; }
+function onYTPlaying(){
+  clearTimeout(ytWatch); synthStop(); ytHint(false);
+  usingYT = true; playing = true; dancing = true; setBtn(true);
+  clearInterval(ytPulse); ytPulse = setInterval(beatFlash, 60000 / 96);
+}
+function playYT(){
+  try { yt.unMute(); yt.setVolume(100); yt.playVideo(); } catch (err) {}
+  clearTimeout(ytWatch);
+  /* ads or a slow connection can delay the song: fill the silence with the backup beat,
+     but leave YouTube running so Don Omar takes over the moment it starts */
+  ytWatch = setTimeout(() => {
+    if (!yt || yt.getPlayerState() !== YT.PlayerState.PLAYING){ synthStart(); ytHint(true); }
+  }, 6000);
 }
 function loadYouTube(){
   window.onYouTubeIframeAPIReady = () => {
+    $('tv').hidden = false;   // visible before the player is built, so it gets a real size
     yt = new YT.Player('yt', {
       videoId: SONG,
-      playerVars: { playsinline: 1, rel: 0, loop: 1, playlist: SONG, modestbranding: 1 },
+      playerVars: { playsinline: 1, rel: 0, loop: 1, playlist: SONG },
       events: {
-        onReady: () => { ytReady = true; $('tv').hidden = false; },
-        onError: () => { ytFailed = true; $('tv').hidden = true; if (usingYT) ytFallback(); },
+        onReady: () => { ytReady = true; if (ytWanted) playYT(); },
+        onError: () => { ytFailed = true; $('tv').hidden = true; clearTimeout(ytWatch); if (ytWanted && !playing) synthStart(); },
         onStateChange: e => {
-          if (e.data === YT.PlayerState.PLAYING){
-            clearTimeout(ytWatch); if (!usingYT && playing) synthStop();
-            usingYT = true; playing = true; dancing = true; setBtn(true);
-            clearInterval(ytPulse); ytPulse = setInterval(beatFlash, 60000 / 96);
-          } else if (e.data === YT.PlayerState.PAUSED && usingYT){
+          if (e.data === YT.PlayerState.PLAYING) onYTPlaying();
+          else if (e.data === YT.PlayerState.PAUSED && usingYT){
             clearInterval(ytPulse); playing = false; dancing = false; setBtn(false);
           }
         }
@@ -688,19 +699,18 @@ loadYouTube();
 function startMusic(){
   if (playing) return;
   primeAudio();   // unlocks sound inside the tap, so the backup beat can always play
-  if (ytReady && !ytFailed){
-    usingYT = true; playing = true; dancing = true; setBtn(true);
-    try { yt.unMute(); yt.setVolume(100); yt.playVideo(); } catch (err) { ytFallback(); return; }
-    clearTimeout(ytWatch);
-    ytWatch = setTimeout(() => { if (yt.getPlayerState() !== YT.PlayerState.PLAYING) ytFallback(); }, 3500);
+  if (!ytFailed){
+    ytWanted = true; setBtn(true);
+    if (ytReady) playYT();
+    else ytWatch = setTimeout(() => { if (!usingYT){ synthStart(); } }, 6000);
   } else {
     synthStart();
   }
 }
 function stopMusic(){
-  clearTimeout(ytWatch); clearInterval(ytPulse);
-  if (usingYT && yt){ try { yt.pauseVideo(); } catch (err) {} }
-  synthStop(); playing = false; dancing = false; setBtn(false);
+  ytWanted = false; clearTimeout(ytWatch); clearInterval(ytPulse); ytHint(false);
+  if (yt && yt.pauseVideo){ try { yt.pauseVideo(); } catch (err) {} }
+  synthStop(); usingYT = false; playing = false; dancing = false; setBtn(false);
 }
 $('dj').addEventListener('click', () => playing ? stopMusic() : startMusic());
 </script>
