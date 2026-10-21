@@ -188,21 +188,6 @@ main.waiting{visibility:hidden}
 .eq i:nth-child(2){animation-delay:-.2s!important}.eq i:nth-child(3){animation-delay:-.35s!important}.eq i:nth-child(4){animation-delay:-.1s!important}
 @keyframes eq{from{height:20%}to{height:100%}}
 .music{display:grid;gap:14px}
-.tv-dock{height:0}
-.tv{position:absolute;z-index:2;box-sizing:border-box;background:var(--night);border-radius:18px;padding:10px 10px 12px;rotate:-1deg;box-shadow:0 0 0 3px #3a2a52,0 14px 26px rgba(0,0,0,.45)}
-.tv-label{font-family:var(--block);font-size:12px;letter-spacing:.06em;color:var(--cheese);margin:0 4px 8px}
-.tv-screen{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#000;max-width:100%}
-.tv-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.tv-ask,.tv-skip{display:none}
-.tv-skip{appearance:none;border:0;background:none;color:#cfc6dd;font-family:var(--type);font-size:13px;text-decoration:underline;margin:10px auto 0;cursor:pointer;padding:6px}
-.tv-backdrop{position:fixed;inset:0;z-index:34;background:rgba(10,6,18,.88)}
-.tv.ask{position:fixed;z-index:35;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));top:50%;translate:0 -50%;rotate:0deg;max-width:440px;margin:0 auto;
-  box-shadow:0 0 0 3px var(--pink),0 0 40px color-mix(in srgb,var(--pink) 60%,transparent);animation:askpop .45s cubic-bezier(.2,.9,.25,1.3)}
-.tv.ask .tv-label{font-size:16px;text-align:center;margin:4px 4px 12px}
-.tv.ask .tv-ask{display:block}.tv.ask .tv-now{display:none}
-.tv.ask .tv-skip{display:block}
-@keyframes askpop{from{scale:.85;opacity:0}to{scale:1;opacity:1}}
-.tv-hint{margin:10px 4px 0;font-family:var(--hand);font-size:16px;color:var(--cheese)}
 .dj-note{font-family:var(--type);font-size:13px;color:#e6e2ee;text-align:center;margin:0;text-shadow:0 1px 3px #000}
 
 .closing{display:grid;justify-items:center;gap:10px;text-align:center}
@@ -211,7 +196,6 @@ main.waiting{visibility:hidden}
 .tap-hint{font-family:var(--type)!important;font-size:13px!important;background:var(--cheese)!important;color:var(--ink)!important;text-shadow:none!important;rotate:2deg!important}
 
 main.revealed > *{animation:drop .75s cubic-bezier(.2,.9,.25,1.25) backwards}
-main.revealed > .music{animation:none}   /* holds the fixed "dale play" card: no transforms on its ancestors */
 main.revealed > *:nth-child(2){animation-delay:.1s}main.revealed > *:nth-child(3){animation-delay:.18s}
 main.revealed > *:nth-child(4){animation-delay:.26s}main.revealed > *:nth-child(5){animation-delay:.34s}
 main.revealed > *:nth-child(6){animation-delay:.42s}main.revealed > *:nth-child(7){animation-delay:.5s}
@@ -240,14 +224,6 @@ main.revealed > *:nth-child(6){animation-delay:.42s}main.revealed > *:nth-child(
 .ticket{background:#fffaf0;color:#222;font-family:var(--type);font-size:clamp(10px,3vw,12.5px);line-height:1.45;text-align:left;padding:10px 12px;width:90%;rotate:3deg;box-shadow:0 2px 0 rgba(0,0,0,.15)}
 .ticket .row{display:flex;justify-content:space-between;gap:8px}
 .tape{position:absolute;width:56px;height:18px;background:color-mix(in srgb,var(--cheese) 60%,transparent);top:20%;right:12%;rotate:28deg}
-.tv-slot{display:none;width:min(86vw,330px)}
-.intro.has-tv{gap:16px;align-content:center}
-.intro.has-tv .scene{width:min(50vw,200px)}
-.intro.has-tv .tv-slot{display:block}
-.intro.has-tv .intro-hint{display:none}
-.tv.on-box{position:fixed;z-index:25;rotate:0deg;margin:0;box-shadow:0 0 0 3px var(--pink),0 0 34px color-mix(in srgb,var(--pink) 55%,transparent)}
-.tv.on-box .tv-label{font-size:15px;text-align:center;margin:2px 4px 10px}
-.tv.on-box .tv-ask{display:block}.tv.on-box .tv-now{display:none}
 .intro-hint{margin:0;font-family:var(--hand);font-size:22px;text-align:center;color:#fff;animation:bob2 1.6s ease-in-out infinite}
 .intro-hint span{display:block;font-family:var(--type);font-size:14px;color:#c9c4d4;margin-top:2px}
 @keyframes bob2{50%{translate:0 -5px}}
@@ -304,19 +280,11 @@ main.revealed > *:nth-child(6){animation-delay:.42s}main.revealed > *:nth-child(
       </div>
     </div>
   </div>
-  <div class="tv-slot" id="tv-slot" aria-hidden="true"></div>
   <p class="intro-hint" id="intro-hint">Toca la caja para abrirla<span>Sube el volumen: viene con música</span></p>
 </div>
 <div class="flash" id="flash"></div>
 <canvas id="confetti" aria-hidden="true"></canvas>
 
-  <div class="tv" id="tv" hidden>
-    <div class="tv-label"><span class="tv-ask" id="tv-ask">Dale play para que empiece la rumba</span><span class="tv-now">Ahora suena · Don Omar</span></div>
-    <div class="tv-screen"><div id="yt"></div></div>
-    <p class="tv-hint" id="tv-hint" hidden>¿No suena Don Omar? Toca el video.</p>
-    <button class="tv-skip" id="tv-skip" type="button">Seguir sin música</button>
-  </div>
-  <div class="tv-backdrop" id="tv-backdrop" hidden></div>
 
 <main id="card" class="waiting">
   <div class="poster-shadow">
@@ -389,7 +357,6 @@ main.revealed > *:nth-child(6){animation-delay:.42s}main.revealed > *:nth-child(
   </section>
 
   <section aria-label="Música" class="music">
-    <div class="tv-dock" id="tv-dock" aria-hidden="true"></div>
     <button class="btn btn-dj" id="dj" type="button" aria-pressed="false">
       <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       <span id="dj-label">Dale play a la fiesta</span>
@@ -580,7 +547,6 @@ function openBox(){
   later(1900, () => {
     $('flash').classList.add('go');
     card.classList.remove('waiting'); card.classList.add('revealed');
-    if ($('tv').classList.contains('on-box')) tvOnBox(false);
     intro.classList.add('gone');
     burst(innerWidth / 2, innerHeight * .35, 140);
     setTimeout(() => { burst(innerWidth * .15, innerHeight * .6, 50); burst(innerWidth * .85, innerHeight * .6, 50); }, 250);
@@ -662,9 +628,11 @@ function pulseAt(t){
   }, Math.max(0, (t - ac.currentTime) * 1000));
 }
 function scheduler(){ while (nextT < ac.currentTime + .12){ play(step, nextT); nextT += SIXTEENTH; step = (step + 1) % 64; } }
-/* ---------- the song: Don Omar on YouTube, with the synthesized dembow as backup ---------- */
-const SONG = 'QjnKRYaQI6s';
-let yt = null, ytReady = false, ytFailed = false, usingYT = false, ytPulse = null, ytWatch = null;
+/* ---------- the song: Don Omar, from the file next to this page; the synthesized dembow is the backup ---------- */
+const song = new Audio('cancion.mp3');
+song.loop = true; song.preload = 'auto';
+let songFailed = false, usingSong = false, songPulse = null;
+song.addEventListener('error', () => { songFailed = true; });
 function setBtn(on){
   $('dj').setAttribute('aria-pressed', on ? 'true' : 'false');
   $('dj-label').textContent = on ? 'Pausar la música' : 'Dale play a la fiesta';
@@ -678,99 +646,22 @@ function synthStart(){
   primeAudio(); if (!ac) return;
   nextT = ac.currentTime + .05; step = 0;
   clearInterval(sched); sched = setInterval(scheduler, 25);
-  playing = true; dancing = true; usingYT = false; setBtn(true);
+  playing = true; dancing = true; usingSong = false; setBtn(true);
 }
 function synthStop(){ clearInterval(sched); }
-let ytWanted = false;   // the guest asked for music; play Don Omar as soon as YouTube is able
-function ytHint(on){ $('tv-hint').hidden = !on; }
-/* Phones (iPhone above all) only let YouTube play with sound when the guest taps the video itself.
-   If the song hasn't started, the video comes forward with a big "dale play" so one tap starts it. */
-function askForPlay(on){
-  $('tv').classList.toggle('ask', on); $('tv-backdrop').hidden = !on; placeTv();
-}
-function onYTPlaying(){
-  clearTimeout(ytWatch); synthStop(); ytHint(false); askForPlay(false);
-  usingYT = true; playing = true; dancing = true; setBtn(true);
-  clearInterval(ytPulse); ytPulse = setInterval(beatFlash, 60000 / 96);
-}
-function playYT(){
-  try { yt.unMute(); yt.setVolume(100); yt.playVideo(); } catch (err) {}
-  clearTimeout(ytWatch);
-  ytWatch = setTimeout(() => {
-    const st = yt && yt.getPlayerState ? yt.getPlayerState() : -1;
-    if (st === YT.PlayerState.PLAYING) return;
-    if (st === YT.PlayerState.BUFFERING){ playYT(); return; }   // still loading: give it more time
-    askForPlay(true); playing = false; setBtn(false);
-  }, 2600);
-}
-$('tv-skip').addEventListener('click', () => { askForPlay(false); ytWanted = false; });
-$('tv-backdrop').addEventListener('click', () => { askForPlay(false); ytWanted = false; });
-/* On the opening screen the video sits under the pizza box: on iPhone, tapping YouTube's own play
-   button is the one tap that can start the song with sound, and it also opens the box. */
-function placeTv(){
-  const tv = $('tv');
-  if (tv.hidden){ $('tv-dock').style.height = '0px'; return; }
-  if (tv.classList.contains('ask')){ tv.style.left = tv.style.top = tv.style.width = ''; return; }
-  if (tv.classList.contains('on-box')){
-    const slot = $('tv-slot'); let r = slot.getBoundingClientRect();
-    tv.style.width = r.width + 'px'; slot.style.height = tv.offsetHeight + 'px';
-    r = slot.getBoundingClientRect(); tv.style.left = r.left + 'px'; tv.style.top = r.top + 'px';
-    return;
-  }
-  const dock = $('tv-dock'); let r = dock.getBoundingClientRect();
-  tv.style.width = r.width + 'px'; dock.style.height = tv.offsetHeight + 'px';
-  r = dock.getBoundingClientRect();
-  tv.style.left = (r.left + scrollX) + 'px'; tv.style.top = (r.top + scrollY) + 'px';
-}
-function tvOnBox(on){
-  $('tv').classList.toggle('on-box', on);
-  intro.classList.toggle('has-tv', on);
-  $('tv-ask').textContent = on ? 'Dale play para abrir tu invitación' : 'Dale play para que empiece la rumba';
-  placeTv(); requestAnimationFrame(placeTv); setTimeout(placeTv, 300);
-}
-if (window.ResizeObserver) new ResizeObserver(() => placeTv()).observe(document.body);
-if (document.fonts) document.fonts.ready.then(placeTv);
-addEventListener('resize', placeTv);
-function loadYouTube(){
-  window.onYouTubeIframeAPIReady = () => {
-    $('tv').hidden = false;   // visible before the player is built, so it gets a real size
-    if (!opened) tvOnBox(true); else placeTv();
-    yt = new YT.Player('yt', {
-      videoId: SONG,
-      playerVars: { playsinline: 1, rel: 0, loop: 1, playlist: SONG },
-      events: {
-        onReady: () => { ytReady = true; if (ytWanted) playYT(); },
-        onError: () => { ytFailed = true; $('tv').hidden = true; tvOnBox(false); clearTimeout(ytWatch); if (ytWanted && !playing) synthStart(); },
-        onStateChange: e => {
-          if (!opened && (e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING)){ ytWanted = true; openBox(); }
-          if (e.data === YT.PlayerState.PLAYING) onYTPlaying();
-          else if (e.data === YT.PlayerState.PAUSED && usingYT){
-            clearInterval(ytPulse); playing = false; dancing = false; setBtn(false);
-          }
-        }
-      }
-    });
-  };
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  tag.onerror = () => { ytFailed = true; };
-  document.head.appendChild(tag);
-}
-loadYouTube();
 function startMusic(){
   if (playing) return;
-  primeAudio();   // unlocks sound inside the tap, so the backup beat can always play
-  if (!ytFailed){
-    ytWanted = true; setBtn(true);
-    if (ytReady) playYT();
-  } else {
-    synthStart();
-  }
+  playing = true; dancing = true; setBtn(true);
+  if (songFailed){ synthStart(); return; }
+  /* play() has to be called right inside the tap: that is what lets iPhone play it with sound */
+  const p = song.play();
+  usingSong = true;
+  clearInterval(songPulse); songPulse = setInterval(beatFlash, 60000 / 92);
+  if (p && p.catch) p.catch(() => { if (!playing) return; clearInterval(songPulse); usingSong = false; synthStart(); });
 }
 function stopMusic(){
-  ytWanted = false; clearTimeout(ytWatch); clearInterval(ytPulse); ytHint(false); askForPlay(false);
-  if (yt && yt.pauseVideo){ try { yt.pauseVideo(); } catch (err) {} }
-  synthStop(); usingYT = false; playing = false; dancing = false; setBtn(false);
+  song.pause(); synthStop(); clearInterval(songPulse);
+  usingSong = false; playing = false; dancing = false; setBtn(false);
 }
 $('dj').addEventListener('click', () => playing ? stopMusic() : startMusic());
 </script>
